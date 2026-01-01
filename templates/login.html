@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="form-container">
+    <h2>Login to Your Account</h2>
+    <form method="POST" action="{{ url_for('auth.login') }}">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+  <div class="helper">
+    <p>Don't have an account? <a href="{{ url_for('auth.register') }}">Register here</a></p>
+        <p>Forgot password?<a href="{{ url_for ('auth.reset_password')}}">reset here</a></p>
+    </div>
+</div>
+
+<div id="popup-message" class="popup-message">
+    <span id="popup-text"></span>
+</div>
+
+
+<script>
+    const popup = document.getElementById('popup-message');
+    const popupText = document.getElementById('popup-text');
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        popupText.textContent = "{{ messages[0] }}";
+        popup.classList.add('show');
+
+        setTimeout(() => {
+            popup.classList.remove('show');
+        }, 4000); 
+    {% endif %}
+    {% endwith %}
+</script>
+
+  </div>
+{% endblock %}

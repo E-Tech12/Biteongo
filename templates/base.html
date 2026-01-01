@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bite On Go</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header class="logo-header">
+    <a href="{{ url_for('home_auth.home') }}" class="logo-wrap">
+        <img src="{{ url_for('static', filename='images/eat_logo.jpeg') }}" alt="Bite On Go Logo">
+        <small class="logo-address">Abeokuta, Ogun State, Nigeria</small>
+    </a>
+
+    <div class="header-text">
+        <h1>Bite On Go</h1>
+        <p class="tagline">Meals • Drinks • Pastries • More</p>
+    </div>
+</header>
+
+<nav class="navbar">
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <div class="nav-links" id="navLinks">
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+            <a href="{{ url_for('contact_auth.contact') }}">Contact us</a>
+            <a href="{{ url_for('about_auth.about') }}">About us</a>
+            <span class="user-greeting">Hello, {{ current_user.first_name }}!</span>
+        {% else %}
+            <a href="{{ url_for('auth.login') }}">Login</a>
+            <a href="{{ url_for('auth.register') }}">Register</a>
+            <a href="{{ url_for('contact_auth.contact') }}">Contact us</a>
+            <a href="{{ url_for('home_auth.home') }}">Menu</a>
+            <a href="{{ url_for('about_auth.about') }}">About us</a>
+        {% endif %}
+    </div>
+</nav>
+
+
+<script>
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
+}
+</script>
+
+{% block content %}
+
+<main class="food-container">
+
+    {% for food in foods %}
+    <div class="food">
+        <img src="{{ url_for('static', filename='images/' ~ food.image) }}" alt="{{ food.name }}">
+        <h3>{{ food.name }}</h3>
+        <h4>{{ food.price }}</h4>
+        <p>{{ food.desc }}</p>
+
+        <form onsubmit="sendWhatsApp(event, '{{ food.name }}')">
+            <button type="submit" class="cart-btn">+ Order</button>
+        </form>
+    </div>
+    {% endfor %}
+<script>
+function sendWhatsApp(e, foodName) {
+    e.preventDefault();
+
+    const message = `Hello Bite On Go!
+I would like to order ${foodName}.
+
+Quantity:
+Phone Number:
+Delivery Address:`;
+
+    const url = "https://wa.me/2347071227790?text=" + encodeURIComponent(message);
+    window.open(url, "_blank");
+}
+</script>
+</main>
+</body>
+</html>
+{% endblock %} 
