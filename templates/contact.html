@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="contact-section">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <p>Have questions or feedback? Send us a message and we’ll get back to you as soon as possible.</p>
+<form action="{{ url_for('contact_auth.contact') }}" method="POST" class="contact-form">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" placeholder="Your Name" required>
+
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" placeholder="Your Email" required>
+
+    <label for="message">Message</label>
+    <textarea name="message" id="message" placeholder="Your Message" rows="6" required></textarea>
+
+    <button type="submit">Send Message</button>
+</form>
+
+<!-- Popup container -->
+<div id="popup-message" class="popup-message">
+    <span id="popup-text"></span>
+</div>
+
+<!-- JS to handle popup -->
+<script>
+    const popup = document.getElementById('popup-message');
+    const popupText = document.getElementById('popup-text');
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        popupText.textContent = "{{ messages[0] }}";
+        popup.classList.add('show');
+
+        setTimeout(() => {
+            popup.classList.remove('show');
+        }, 4000); // hide after 4 seconds
+    {% endif %}
+    {% endwith %}
+</script>
+
+  </div>
+</section>
+{% endblock %}

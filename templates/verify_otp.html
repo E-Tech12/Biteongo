@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="pass-reset">
+    <h2>OTP Verification</h2>
+        <form method="POST">
+            <input type="text" name="otp" placeholder="Enter OTP" required>
+            <button type="submit">Verify OTP</button>
+        </form>
+
+</div>
+
+<div id="popup-message" class="popup-message">
+    <span id="popup-text"></span>
+</div>
+
+<script>
+    const popup = document.getElementById('popup-message');
+    const popupText = document.getElementById('popup-text');
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        popupText.textContent = "{{ messages[0] }}";
+        popup.classList.add('show');
+
+        setTimeout(() => {
+            popup.classList.remove('show');
+        }, 4000);
+    {% endif %}
+    {% endwith %}
+</script>
+
+  </div>
+{% endblock %}

@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Bite On Go{% endblock %}
+
+{% block content %}
+
+<div class="heading">
+    <h1>Delicious Food Delivered to Your Doorstep</h1>
+</div>
+
+<div class="sub-heading">
+    <h3>
+        Order from your favourite restaurants and get it delivered fast.
+        Fresh, tasty meals just a click away!
+    </h3>
+    <button>Order Now</button>
+    <button>View Menu</button>
+</div>
+
+<div class="home-img">
+    <img src="{{ url_for('static', filename='images/home.jpg') }}" alt="Home">
+</div>
+
+<!-- WHY CHOOSE US -->
+<div class="section">
+    <h2>Why Choose Bite On Go</h2>
+    <h4>We provide the best food delivery service in town with these amazing features</h4>
+</div>
+
+<div class="delivery">
+    <h3>Fast Delivery</h3>
+    <h4>Get your food delivered in under 20 minutes or get it free.</h4>
+</div>
+
+<div class="fresh-food">
+    <h3>Fresh Food</h3>
+    <h4>We partner with top restaurants to bring you high-quality meals.</h4>
+</div>
+
+<div class="support">
+    <h3>24/7 Support</h3>
+    <h4>Our customer service team is available round the clock.</h4>
+</div>
+
+<!-- MENU -->
+<div class="menu-heading">
+    <h2>Our Delicious Menu</h2>
+    <h3>Browse through our mouth-watering dishes</h3>
+</div>
+
+<main class="food-container">
+
+    {% set foods = [
+        ('Pizza', 'pizz.jpg', '₦5,000.00', 'Delicious cheese pizza with fresh toppings.'),
+        ('Burger', 'burger.jpg', '₦5,000.00', 'Juicy beef burger with lettuce and cheese.'),
+        ('Shawarma', 'shawarma.jpg', '₦2,000.00', 'Loaded shawarma with tasty fillings.'),
+        ('Doughnuts', 'Doughnuts.jpg', '₦500.00', 'Freshly baked glazed doughnuts.'),
+        ('Eggroll', 'egg                                                                                                                roll.jpg', '₦500.00', 'Delicious eggroll with savory filling.'),
+        ('Meat Pie', 'pie.jpg', '₦700.00', 'Flaky pastry filled with seasoned meat.'),
+        ('Croissants', 'croissants.jpg', '₦500.00', 'Buttery and flaky croissants.'),
+        ('Coldstone', 'coldstone.jpg', '₦2,000.00', 'Creamy coldstone ice cream.'),
+        ('Chicken Chips', 'chicken.jpg', '₦1,500.00', 'Crispy seasoned chicken chips.'),
+        ('Parfait', 'parfait.jpg', '₦1,500.00', 'Yogurt parfait with fruits and granola.'),
+        ('Amala', 'amala.jpg', '₦300.00', 'Traditional Nigerian amala.'),
+        ('Eba', 'eba.jpg', '₦300.00', 'Traditional Nigerian eba.'),
+        ('Fufu', 'fufuu.jpg', '₦300.00', 'Traditional Nigerian fufu.')
+    ] %}
+
+    {% for food, img, price, desc in foods %}
+    <div class="food">
+        <img src="{{ url_for('static', filename='images/' ~ img) }}" alt="{{ food }}">
+        <h3>{{ food }}</h3>
+        <h4>{{ price }}</h4>
+        <p>{{ desc }}</p>
+        <form onsubmit="sendWhatsApp(event, '{{ food }}')">
+            <button type="submit" class="cart-btn">+ Order</button>
+        </form>
+    </div>
+    {% endfor %}
+
+</main>
+
+<!-- ABOUT -->
+<section class="about-section">
+    <div class="about-container">
+        <h2>About Bite On Go</h2>
+        <p>
+            Welcome to <strong>Bite On Go</strong>! We deliver delicious,
+            freshly-prepared meals wherever you are.
+        </p>
+        <p>
+            Our mission is simple: <strong>quality, taste, and convenience</strong>.
+            Every meal is crafted with love using fresh ingredients.
+        </p>
+        <p>
+            Thank you for choosing Bite On Go – your go-to spot for great food anytime!
+        </p>
+    </div>
+</section>
+
+<!-- ONE WHATSAPP SCRIPT -->
+<script>
+function sendWhatsApp(e, foodName) {
+    e.preventDefault();
+
+    const message = `Hello Bite On Go!
+I would like to order ${foodName}.
+
+Quantity:
+Phone Number:
+Delivery Address:`;
+
+    const url = "https://wa.me/2347071727790?text=" + encodeURIComponent(message);
+    window.open(url, "_blank");
+}
+</script>
+
+{% endblock %}

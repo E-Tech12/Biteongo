@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<main class="food-container">
+
+    <div class="food">
+        <img src="{{ url_for('static', filename='images/pizz.jpg') }}" alt="Pizza">
+        <h3>Pizza</h3>
+        <h4>₦5,000.00</h4>
+        <p>Delicious cheese pizza with fresh toppings.</p>
+
+        {% if current_user.is_authenticated %}
+            <button class="cart-btn" onclick="addToCart('Pizza', 5000)">
+                + Add to Cart
+            </button>
+        {% else %}
+            <button class="cart-btn disabled">
+                Login to Order
+            </button>
+        {% endif %}
+    </div>
+
+</main>
+
+{% endblock %}
