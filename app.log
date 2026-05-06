@@ -6443,3 +6443,150 @@ jinja2.exceptions.TemplateAssertionError: block 'content' defined twice
 2026-05-06 15:43:30,830 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 15:43:30] "[32mGET /logout HTTP/1.1[0m" 302 -
 2026-05-06 15:43:30,919 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 15:43:30] "GET /login HTTP/1.1" 200 -
 2026-05-06 15:43:31,137 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 15:43:31] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-06 17:47:41,309 - INFO - app - Flask application starting...
+2026-05-06 17:47:41,378 - INFO - app - Database initialized
+2026-05-06 17:47:41,379 - INFO - app - LoginManager initialized
+2026-05-06 17:47:41,380 - INFO - app - Mail service configured
+2026-05-06 17:47:41,386 - INFO - app - Auth blueprint registered
+2026-05-06 17:47:41,388 - INFO - app - Home blueprint registered
+2026-05-06 17:47:41,389 - INFO - app - About blueprint registered
+2026-05-06 17:47:41,390 - INFO - app - Contact blueprint registered
+2026-05-06 17:47:41,440 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-06 17:47:41,441 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-05-06 17:48:55,663 - INFO - app - Flask application starting...
+2026-05-06 17:48:55,745 - INFO - app - Database initialized
+2026-05-06 17:48:55,745 - INFO - app - LoginManager initialized
+2026-05-06 17:48:55,746 - INFO - app - Mail service configured
+2026-05-06 17:48:55,752 - INFO - app - Auth blueprint registered
+2026-05-06 17:48:55,756 - INFO - app - Home blueprint registered
+2026-05-06 17:48:55,757 - INFO - app - About blueprint registered
+2026-05-06 17:48:55,758 - INFO - app - Contact blueprint registered
+2026-05-06 17:48:55,819 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-06 17:48:55,820 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-05-06 17:50:44,071 - INFO - app - Flask application starting...
+2026-05-06 17:50:44,155 - INFO - app - Database initialized
+2026-05-06 17:50:44,156 - INFO - app - LoginManager initialized
+2026-05-06 17:50:44,156 - INFO - app - Mail service configured
+2026-05-06 17:50:44,167 - INFO - app - Auth blueprint registered
+2026-05-06 17:50:44,172 - INFO - app - Home blueprint registered
+2026-05-06 17:50:44,176 - INFO - app - About blueprint registered
+2026-05-06 17:50:44,182 - INFO - app - Contact blueprint registered
+2026-05-06 17:50:44,265 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-06 17:50:44,266 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-05-06 17:50:49,478 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:50:49] "GET / HTTP/1.1" 200 -
+2026-05-06 17:50:50,712 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:50:50] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-06 17:50:52,878 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:50:52] "[36mGET /static/images/pizz.jpg HTTP/1.1[0m" 304 -
+2026-05-06 17:50:52,881 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:50:52] "[36mGET /static/images/burger.jpg HTTP/1.1[0m" 304 -
+2026-05-06 17:50:52,975 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:50:52] "[36mGET /static/images/shawarma.jpg HTTP/1.1[0m" 304 -
+2026-05-06 17:50:52,979 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:50:52] "[36mGET /static/images/Doughnuts.jpg HTTP/1.1[0m" 304 -
+2026-05-06 17:50:52,983 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:50:52] "[36mGET /static/images/eggroll.jpg HTTP/1.1[0m" 304 -
+2026-05-06 17:50:53,105 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:50:53] "[36mGET /static/images/pie.jpg HTTP/1.1[0m" 304 -
+2026-05-06 17:50:53,115 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:50:53] "[36mGET /static/images/croissants.jpg HTTP/1.1[0m" 304 -
+2026-05-06 17:50:53,136 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:50:53] "[36mGET /static/images/coldstone.jpg HTTP/1.1[0m" 304 -
+2026-05-06 17:50:53,183 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:50:53] "[36mGET /static/images/parfait.jpg HTTP/1.1[0m" 304 -
+2026-05-06 17:50:53,257 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:50:53] "[36mGET /static/images/chicken.jpg HTTP/1.1[0m" 304 -
+2026-05-06 17:50:55,728 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:50:55] "GET /login HTTP/1.1" 200 -
+2026-05-06 17:50:56,026 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:50:56] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-06 17:51:19,888 - INFO - app - Flask application starting...
+2026-05-06 17:51:19,970 - INFO - app - Database initialized
+2026-05-06 17:51:19,972 - INFO - app - LoginManager initialized
+2026-05-06 17:51:19,974 - INFO - app - Mail service configured
+2026-05-06 17:51:19,978 - INFO - app - Auth blueprint registered
+2026-05-06 17:51:19,982 - INFO - app - Home blueprint registered
+2026-05-06 17:51:19,982 - INFO - app - About blueprint registered
+2026-05-06 17:51:19,986 - INFO - app - Contact blueprint registered
+2026-05-06 17:51:20,064 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-06 17:51:20,064 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-05-06 17:51:22,377 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:51:22] "GET /login HTTP/1.1" 200 -
+2026-05-06 17:51:22,792 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:51:22] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-06 17:56:46,879 - INFO - app - Flask application starting...
+2026-05-06 17:56:46,948 - INFO - app - Database initialized
+2026-05-06 17:56:46,952 - INFO - app - LoginManager initialized
+2026-05-06 17:56:46,952 - INFO - app - Mail service configured
+2026-05-06 17:56:46,954 - INFO - app - Auth blueprint registered
+2026-05-06 17:56:46,956 - INFO - app - Home blueprint registered
+2026-05-06 17:56:46,956 - INFO - app - About blueprint registered
+2026-05-06 17:56:46,960 - INFO - app - Contact blueprint registered
+2026-05-06 17:56:47,062 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-06 17:56:47,064 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-05-06 17:56:55,114 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:56:55] "GET /login HTTP/1.1" 200 -
+2026-05-06 17:56:55,618 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 17:56:55] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-06 18:12:49,089 - INFO - app - Flask application starting...
+2026-05-06 18:12:49,245 - INFO - app - Database initialized
+2026-05-06 18:12:49,246 - INFO - app - LoginManager initialized
+2026-05-06 18:12:49,247 - INFO - app - Mail service configured
+2026-05-06 18:12:49,253 - INFO - app - Auth blueprint registered
+2026-05-06 18:12:49,253 - INFO - app - Home blueprint registered
+2026-05-06 18:12:49,258 - INFO - app - About blueprint registered
+2026-05-06 18:12:49,264 - INFO - app - Contact blueprint registered
+2026-05-06 18:12:49,357 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-06 18:12:49,359 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-05-06 18:12:55,884 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:12:55] "GET /login HTTP/1.1" 200 -
+2026-05-06 18:12:58,444 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:12:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-06 18:13:03,088 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:13:03] "GET /contact HTTP/1.1" 200 -
+2026-05-06 18:13:03,318 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:13:03] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-06 18:13:28,564 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:13:28] "[32mPOST /contact HTTP/1.1[0m" 302 -
+2026-05-06 18:13:28,636 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:13:28] "GET /contact HTTP/1.1" 200 -
+2026-05-06 18:13:28,900 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:13:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-06 18:17:08,503 - INFO - app - Flask application starting...
+2026-05-06 18:17:08,587 - INFO - app - Database initialized
+2026-05-06 18:17:08,587 - INFO - app - LoginManager initialized
+2026-05-06 18:17:08,591 - INFO - app - Mail service configured
+2026-05-06 18:17:08,594 - INFO - app - Auth blueprint registered
+2026-05-06 18:17:08,594 - INFO - app - Home blueprint registered
+2026-05-06 18:17:08,598 - INFO - app - About blueprint registered
+2026-05-06 18:17:08,598 - INFO - app - Contact blueprint registered
+2026-05-06 18:17:08,656 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-06 18:17:08,657 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-05-06 18:17:18,866 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:17:18] "GET /contact HTTP/1.1" 200 -
+2026-05-06 18:17:19,276 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:17:19] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-06 18:18:03,203 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:18:03] "[32mPOST /contact HTTP/1.1[0m" 302 -
+2026-05-06 18:18:03,278 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:18:03] "GET /contact HTTP/1.1" 200 -
+2026-05-06 18:18:03,536 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:18:03] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-06 18:20:34,320 - INFO - app - Flask application starting...
+2026-05-06 18:20:34,408 - INFO - app - Database initialized
+2026-05-06 18:20:34,408 - INFO - app - LoginManager initialized
+2026-05-06 18:20:34,408 - INFO - app - Mail service configured
+2026-05-06 18:20:34,417 - INFO - app - Auth blueprint registered
+2026-05-06 18:20:34,419 - INFO - app - Home blueprint registered
+2026-05-06 18:20:34,419 - INFO - app - About blueprint registered
+2026-05-06 18:20:34,425 - INFO - app - Contact blueprint registered
+2026-05-06 18:20:34,491 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-06 18:20:34,492 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-05-06 18:20:39,472 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:20:39] "GET / HTTP/1.1" 200 -
+2026-05-06 18:20:40,212 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:20:40] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-06 18:20:42,242 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:20:42] "[36mGET /static/images/pizz.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:20:42,348 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:20:42] "[36mGET /static/images/eggroll.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:20:42,422 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:20:42] "[36mGET /static/images/burger.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:20:42,432 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:20:42] "[36mGET /static/images/Doughnuts.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:20:42,520 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:20:42] "[36mGET /static/images/shawarma.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:20:42,670 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:20:42] "[36mGET /static/images/pie.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:20:42,686 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:20:42] "[36mGET /static/images/coldstone.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:20:42,700 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:20:42] "[36mGET /static/images/croissants.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:20:42,734 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:20:42] "[36mGET /static/images/chicken.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:20:42,927 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:20:42] "[36mGET /static/images/parfait.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:20:45,841 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:20:45] "GET /contact HTTP/1.1" 200 -
+2026-05-06 18:20:46,125 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:20:46] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-06 18:21:20,641 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:21:20] "[32mPOST /contact HTTP/1.1[0m" 302 -
+2026-05-06 18:21:20,689 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:21:20] "GET /contact HTTP/1.1" 200 -
+2026-05-06 18:21:20,909 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:21:20] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-06 18:21:58,688 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:21:58] "GET / HTTP/1.1" 200 -
+2026-05-06 18:21:58,952 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:21:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-06 18:22:00,832 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:22:00] "[36mGET /static/images/pizz.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:22:00,869 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:22:00] "[36mGET /static/images/burger.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:22:00,923 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:22:00] "[36mGET /static/images/shawarma.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:22:00,954 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:22:00] "[36mGET /static/images/Doughnuts.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:22:01,521 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:22:01] "[36mGET /static/images/eggroll.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:22:01,543 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:22:01] "[36mGET /static/images/pie.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:22:01,736 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:22:01] "[36mGET /static/images/croissants.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:22:01,955 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:22:01] "[36mGET /static/images/chicken.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:22:01,979 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:22:01] "[36mGET /static/images/coldstone.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:22:02,004 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:22:02] "[36mGET /static/images/parfait.jpg HTTP/1.1[0m" 304 -
