@@ -6590,3 +6590,16 @@ jinja2.exceptions.TemplateAssertionError: block 'content' defined twice
 2026-05-06 18:22:01,955 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:22:01] "[36mGET /static/images/chicken.jpg HTTP/1.1[0m" 304 -
 2026-05-06 18:22:01,979 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:22:01] "[36mGET /static/images/coldstone.jpg HTTP/1.1[0m" 304 -
 2026-05-06 18:22:02,004 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:22:02] "[36mGET /static/images/parfait.jpg HTTP/1.1[0m" 304 -
+2026-05-06 18:30:59,629 - INFO - app - Flask application starting...
+2026-05-06 18:30:59,725 - INFO - app - Database initialized
+2026-05-06 18:30:59,725 - INFO - app - LoginManager initialized
+2026-05-06 18:30:59,727 - INFO - app - Mail service configured
+2026-05-06 18:30:59,732 - INFO - app - Auth blueprint registered
+2026-05-06 18:30:59,732 - INFO - app - Home blueprint registered
+2026-05-06 18:30:59,735 - INFO - app - About blueprint registered
+2026-05-06 18:30:59,735 - INFO - app - Contact blueprint registered
+2026-05-06 18:30:59,816 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-06 18:30:59,818 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-05-06 18:31:07,298 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:31:07] "GET /contact HTTP/1.1" 200 -
+2026-05-06 18:31:09,095 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:31:09] "[36mGET /static/style.css HTTP/1.1[0m" 304 -

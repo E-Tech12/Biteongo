@@ -92,6 +92,7 @@
         justify-content: center;
         color: #f97316;
         font-size: 1.25rem;
+        flex-shrink: 0;
     }
     
     .info-details h4 {
@@ -105,6 +106,8 @@
         color: #6b7280;
         font-size: 0.875rem;
         line-height: 1.5;
+        margin: 0;
+        word-break: break-word;
     }
     
     .contact-form {
@@ -144,9 +147,11 @@
         padding: 12px 16px;
         border: 2px solid #e5e7eb;
         border-radius: 12px;
-        font-size: 1rem;
+        font-size: 16px; /* Prevents zoom on mobile */
         transition: all 0.3s ease;
         font-family: inherit;
+        -webkit-appearance: none;
+        appearance: none;
     }
     
     .contact-form input:focus,
@@ -179,6 +184,10 @@
         box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
     }
     
+    .contact-form button:active {
+        transform: translateY(0);
+    }
+    
     .map-container {
         margin-top: 30px;
         border-radius: 16px;
@@ -189,12 +198,14 @@
         width: 100%;
         height: 250px;
         border: none;
+        display: block;
     }
     
     .social-links {
         display: flex;
         gap: 15px;
         margin-top: 20px;
+        flex-wrap: wrap;
     }
     
     .social-link {
@@ -207,11 +218,16 @@
         justify-content: center;
         color: white;
         transition: all 0.3s ease;
+        text-decoration: none;
     }
     
     .social-link:hover {
         background: #ea580c;
         transform: translateY(-3px);
+    }
+    
+    .social-link:active {
+        transform: translateY(0);
     }
     
     .popup-message {
@@ -248,18 +264,228 @@
         }
     }
     
-    @media (max-width: 768px) {
+    /* ============================================ */
+    /* MOBILE RESPONSIVENESS - ENHANCED */
+    /* ============================================ */
+    
+    /* Tablet Styles */
+    @media (max-width: 1024px) {
         .contact-content {
-            grid-template-columns: 1fr;
-            padding: 20px;
+            gap: 30px;
+            padding: 30px;
+        }
+        
+        .contact-info {
+            padding: 25px;
+        }
+    }
+    
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+        .contact-section {
+            padding: 40px 15px;
+        }
+        
+        .container {
+            margin: 0;
+            border-radius: 20px;
+        }
+        
+        .contact-header {
+            padding: 30px 20px;
         }
         
         .contact-header h2 {
             font-size: 1.8rem;
         }
         
-        .container {
-            margin: 0 20px;
+        .contact-header p {
+            font-size: 0.95rem;
+            padding: 0 10px;
+        }
+        
+        .contact-content {
+            grid-template-columns: 1fr;
+            gap: 25px;
+            padding: 20px;
+        }
+        
+        .contact-info {
+            padding: 20px;
+            order: 2; /* Moves contact info below form on mobile */
+        }
+        
+        .contact-form {
+            order: 1; /* Form appears first on mobile */
+        }
+        
+        .contact-info h3,
+        .contact-form h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .info-item {
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+        
+        .info-details p {
+            font-size: 0.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            padding: 10px 14px;
+            font-size: 16px; /* Prevents zoom on iOS */
+        }
+        
+        .contact-form button {
+            padding: 12px;
+            font-size: 0.95rem;
+        }
+        
+        .map-container {
+            margin-top: 20px;
+        }
+        
+        .map-container iframe {
+            height: 200px;
+        }
+        
+        .social-links {
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+        }
+        
+        .popup-message {
+            top: 80px;
+            right: 15px;
+            left: 15px;
+            min-width: auto;
+            max-width: calc(100% - 30px);
+            padding: 14px;
+            font-size: 14px;
+        }
+    }
+    
+    /* Small Mobile Styles (below 480px) */
+    @media (max-width: 480px) {
+        .contact-section {
+            padding: 30px 10px;
+        }
+        
+        .contact-header {
+            padding: 25px 15px;
+        }
+        
+        .contact-header h2 {
+            font-size: 1.5rem;
+        }
+        
+        .contact-header p {
+            font-size: 0.85rem;
+        }
+        
+        .contact-content {
+            padding: 15px;
+            gap: 20px;
+        }
+        
+        .contact-info {
+            padding: 15px;
+        }
+        
+        .contact-info h3,
+        .contact-form h3 {
+            font-size: 1.2rem;
+        }
+        
+        .info-item {
+            padding: 10px;
+            gap: 12px;
+        }
+        
+        .info-icon {
+            width: 35px;
+            height: 35px;
+        }
+        
+        .info-details h4 {
+            font-size: 0.9rem;
+        }
+        
+        .info-details p {
+            font-size: 0.75rem;
+        }
+        
+        .form-group label {
+            font-size: 0.8rem;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            padding: 10px 12px;
+        }
+        
+        .contact-form button {
+            padding: 12px;
+            font-size: 0.9rem;
+        }
+        
+        .social-link {
+            width: 38px;
+            height: 38px;
+        }
+    }
+    
+    /* Landscape mode on mobile */
+    @media (max-width: 768px) and (orientation: landscape) {
+        .contact-section {
+            padding: 30px 15px;
+        }
+        
+        .contact-content {
+            gap: 20px;
+        }
+        
+        .info-item {
+            margin-bottom: 10px;
+        }
+        
+        .map-container iframe {
+            height: 150px;
+        }
+    }
+    
+    /* Touch-friendly button for mobile */
+    @media (hover: none) and (pointer: coarse) {
+        .contact-form button {
+            padding: 14px;
+        }
+        
+        .social-link {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            font-size: 16px;
         }
     }
 </style>
@@ -357,7 +583,8 @@
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.123456789!2d3.345678!3d7.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b1b2b2b2b2b%3A0x1234567890abcdef!2s12%20Agbede%20FUNAAB%2C%20Abeokuta!5e0!3m2!1sen!2sng!4v1234567890123!5m2!1sen!2sng" 
                 allowfullscreen="" 
-                loading="lazy">
+                loading="lazy"
+                title="BiteOnGo Location Map">
             </iframe>
         </div>
     </div>
@@ -394,13 +621,22 @@
             {% endfor %}
         {% endif %}
     {% endwith %}
+    
+    // Optional: Add loading state to button on submit
+    const contactForm = document.querySelector('.contact-form form');
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    
+    contactForm.addEventListener('submit', function() {
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+        
+        // Reset button if there's an error (will be handled by page reload on success)
+        setTimeout(() => {
+            if (!submitBtn.disabled) {
+                submitBtn.innerHTML = originalText;
+            }
+        }, 5000);
+    });
 </script>
 {% endblock %}
-
-
-
-
-
-
-
-
