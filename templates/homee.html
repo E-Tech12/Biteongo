@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MemeTrader | Learn Meme Coin Trading</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6366f1',
+            dark: '#0f172a'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-dark text-white">
+
+<!-- Navbar -->
+<nav class="fixed top-0 w-full bg-black/80 backdrop-blur z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold">🚀 MemeTrader</h1>
+    <div class="hidden md:flex gap-6">
+      <a href="#start" class="hover:text-primary transition">Get Started</a>
+      <a href="#coins" class="hover:text-primary transition">Coins</a>
+      <a href="#" class="bg-primary px-4 py-2 rounded-lg hover:opacity-80 transition">Join</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="min-h-screen flex items-center justify-center text-center px-6 bg-gradient-to-br from-indigo-600 to-purple-700">
+  <div class="max-w-3xl animate-fadeIn">
+    <h2 class="text-4xl md:text-6xl font-extrabold mb-4">
+      Start Trading Meme Coins 🚀
+    </h2>
+    <p class="text-lg text-indigo-100 mb-8">
+      Learn how to trade meme coins safely, smartly, and without FOMO.
+    </p>
+    <a href="#start" class="bg-white text-indigo-700 px-8 py-3 rounded-xl font-semibold hover:scale-105 transition">
+      Get Started
+    </a>
+  </div>
+</section>
+
+<!-- Get Started -->
+<section id="start" class="py-20 px-6 bg-slate-900">
+  <div class="max-w-7xl mx-auto">
+    <h3 class="text-3xl font-bold text-center mb-12">How To Get Started</h3>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-slate-800 p-8 rounded-2xl hover:-translate-y-2 transition">
+        <div class="text-4xl mb-4">👛</div>
+        <h4 class="text-xl font-semibold mb-2">Create a Wallet</h4>
+        <p class="text-slate-300">
+          Use wallets like MetaMask or Trust Wallet to store meme coins.
+        </p>
+      </div>
+
+      <div class="bg-slate-800 p-8 rounded-2xl hover:-translate-y-2 transition">
+        <div class="text-4xl mb-4">💰</div>
+        <h4 class="text-xl font-semibold mb-2">Buy Meme Coins</h4>
+        <p class="text-slate-300">
+          Buy from exchanges like Binance, Coinbase, or DEXs.
+        </p>
+      </div>
+
+      <div class="bg-slate-800 p-8 rounded-2xl hover:-translate-y-2 transition">
+        <div class="text-4xl mb-4">📈</div>
+        <h4 class="text-xl font-semibold mb-2">Trade Smart</h4>
+        <p class="text-slate-300">
+          Watch trends, manage risk, and never invest blindly.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Meme Coins -->
+<section id="coins" class="py-20 px-6 bg-black">
+  <div class="max-w-7xl mx-auto">
+    <h3 class="text-3xl font-bold text-center mb-12">Popular Meme Coins</h3>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="coin">🐶 Dogecoin</div>
+      <div class="coin">🐕 Shiba Inu</div>
+      <div class="coin">🐸 Pepe</div>
+      <div class="coin">🦊 Floki</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 px-6 bg-gradient-to-r from-indigo-600 to-purple-600 text-center">
+  <h3 class="text-3xl font-bold mb-4">Ready to Start Trading?</h3>
+  <p class="mb-8 text-indigo-100">Learn first. Trade smart. Avoid rugs.</p>
+  <a href="#" class="bg-white text-indigo-700 px-8 py-3 rounded-xl font-semibold hover:scale-105 transition">
+    Join MemeTrader
+  </a>
+</section>
+
+<!-- Footer -->
+<footer class="py-6 text-center bg-black text-slate-400">
+  © 2026 MemeTrader • Not Financial Advice
+</footer>
+
+<!-- Custom Utility -->
+<style>
+  .coin {
+    @apply bg-slate-800 p-6 rounded-xl text-center text-lg font-semibold 
+    hover:bg-indigo-600 hover:scale-105 transition cursor-pointer;
+  }
+</style>
+
+</body>
+</html>

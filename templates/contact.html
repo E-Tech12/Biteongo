@@ -1,45 +1,407 @@
 {% extends "base.html" %}
 
+{% block title %}Contact Us | Bite On Go{% endblock %}
+
 {% block content %}
+<style>
+    .contact-section {
+        min-height: calc(100vh - 200px);
+        background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+        padding: 60px 20px;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 24px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        animation: fadeInUp 0.6s ease-out;
+    }
+    
+    .contact-header {
+        background: linear-gradient(135deg, #f97316, #ea580c);
+        padding: 40px;
+        text-align: center;
+        color: white;
+    }
+    
+    .contact-header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+    
+    .contact-header p {
+        font-size: 1.1rem;
+        opacity: 0.95;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .contact-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        padding: 40px;
+    }
+    
+    .contact-info {
+        background: #f9fafb;
+        border-radius: 16px;
+        padding: 30px;
+    }
+    
+    .contact-info h3 {
+        font-size: 1.5rem;
+        color: #1f2937;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .contact-info h3 i {
+        color: #f97316;
+    }
+    
+    .info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 25px;
+        padding: 15px;
+        background: white;
+        border-radius: 12px;
+        transition: transform 0.3s ease;
+    }
+    
+    .info-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .info-icon {
+        width: 45px;
+        height: 45px;
+        background: #fff7ed;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #f97316;
+        font-size: 1.25rem;
+    }
+    
+    .info-details h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 5px;
+    }
+    
+    .info-details p {
+        color: #6b7280;
+        font-size: 0.875rem;
+        line-height: 1.5;
+    }
+    
+    .contact-form {
+        background: white;
+        border-radius: 16px;
+        padding: 0;
+    }
+    
+    .contact-form h3 {
+        font-size: 1.5rem;
+        color: #1f2937;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .contact-form h3 i {
+        color: #f97316;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .contact-form label {
+        display: block;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 8px;
+        font-size: 0.875rem;
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        font-family: inherit;
+    }
+    
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+        outline: none;
+        border-color: #f97316;
+        box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+    }
+    
+    .contact-form button {
+        width: 100%;
+        background: #f97316;
+        color: white;
+        padding: 14px;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .contact-form button:hover {
+        background: #ea580c;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
+    }
+    
+    .map-container {
+        margin-top: 30px;
+        border-radius: 16px;
+        overflow: hidden;
+    }
+    
+    .map-container iframe {
+        width: 100%;
+        height: 250px;
+        border: none;
+    }
+    
+    .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        background: #f97316;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+        background: #ea580c;
+        transform: translateY(-3px);
+    }
+    
+    .popup-message {
+        visibility: hidden;
+        min-width: 300px;
+        background-color: #f97316;
+        color: white;
+        text-align: center;
+        border-radius: 12px;
+        padding: 16px;
+        position: fixed;
+        z-index: 1000;
+        top: 100px;
+        right: 30px;
+        font-weight: 500;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .popup-message.show {
+        visibility: visible;
+        opacity: 1;
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .contact-content {
+            grid-template-columns: 1fr;
+            padding: 20px;
+        }
+        
+        .contact-header h2 {
+            font-size: 1.8rem;
+        }
+        
+        .container {
+            margin: 0 20px;
+        }
+    }
+</style>
+
 <section class="contact-section">
     <div class="container">
-        <h2>Contact Us</h2>
-        <p>Have questions or feedback? Send us a message and we’ll get back to you as soon as possible.</p>
-<form action="{{ url_for('contact_auth.contact') }}" method="POST" class="contact-form">
-    <label for="name">Name</label>
-    <input type="text" name="name" id="name" placeholder="Your Name" required>
-
-    <label for="email">Email</label>
-    <input type="email" name="email" id="email" placeholder="Your Email" required>
-
-    <label for="message">Message</label>
-    <textarea name="message" id="message" placeholder="Your Message" rows="6" required></textarea>
-
-    <button type="submit">Send Message</button>
-</form>
+        <div class="contact-header">
+            <h2><i class="fas fa-envelope-open-text"></i> Contact Us</h2>
+            <p>Have questions or feedback? Send us a message and we'll get back to you as soon as possible.</p>
+        </div>
+        
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3><i class="fas fa-info-circle"></i> Get in Touch</h3>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Visit Us</h4>
+                        <p>12, Agbede FUNAAB, Abeokuta, Ogun State, Nigeria</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Call Us</h4>
+                        <p>+234 9011499918</p>
+                        <p>+234 7071227790</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Email Us</h4>
+                        <p>adediraneric592@gmail.com</p>
+                        <p>support@biteongo.com</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Opening Hours</h4>
+                        <p>Monday - Friday: 9:00 AM - 11:00 PM</p>
+                        <p>Saturday: 10:00 AM - 12:00 AM</p>
+                        <p>Sunday: 10:00 AM - 10:00 PM</p>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3><i class="fas fa-paper-plane"></i> Send us a Message</h3>
+                
+                <form action="{{ url_for('contact_auth.contact') }}" method="POST">
+                    <div class="form-group">
+                        <label for="name"><i class="fas fa-user"></i> Your Name</label>
+                        <input type="text" name="name" id="name" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                        <input type="email" name="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message"><i class="fas fa-comment"></i> Your Message</label>
+                        <textarea name="message" id="message" placeholder="What would you like to tell us?" rows="6" required></textarea>
+                    </div>
+                    
+                    <button type="submit">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.123456789!2d3.345678!3d7.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b1b2b2b2b2b%3A0x1234567890abcdef!2s12%20Agbede%20FUNAAB%2C%20Abeokuta!5e0!3m2!1sen!2sng!4v1234567890123!5m2!1sen!2sng" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+</section>
 
 <!-- Popup container -->
 <div id="popup-message" class="popup-message">
+    <i class="fas fa-info-circle" style="margin-right: 10px;"></i>
     <span id="popup-text"></span>
 </div>
 
-<!-- JS to handle popup -->
 <script>
     const popup = document.getElementById('popup-message');
     const popupText = document.getElementById('popup-text');
 
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        popupText.textContent = "{{ messages[0] }}";
-        popup.classList.add('show');
-
-        setTimeout(() => {
-            popup.classList.remove('show');
-        }, 4000); // hide after 4 seconds
-    {% endif %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                popupText.textContent = "{{ message }}";
+                popup.classList.add('show');
+                
+                {% if category == 'error' %}
+                    popup.style.backgroundColor = '#ef4444';
+                {% elif category == 'success' %}
+                    popup.style.backgroundColor = '#10b981';
+                {% else %}
+                    popup.style.backgroundColor = '#f97316';
+                {% endif %}
+                
+                setTimeout(() => {
+                    popup.classList.remove('show');
+                    popup.style.backgroundColor = '#f97316';
+                }, 4000);
+            {% endfor %}
+        {% endif %}
     {% endwith %}
 </script>
-
-  </div>
-</section>
 {% endblock %}
+
+
+
+
+
+
+
+

@@ -3,116 +3,451 @@
 {% block title %}Home | Bite On Go{% endblock %}
 
 {% block content %}
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-orange-50 to-amber-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="md:w-1/2 animate-fadeInLeft">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 leading-tight">Delicious Food Delivered to Your Doorstep</h1>
+                    <p class="text-lg text-gray-600 mb-8">Order from your favorite restaurants and get it delivered fast. Fresh, tasty meals just a click away!</p>
+                    <div class="flex space-x-4">
+                        <button id="orderNowBtn" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105">
+                            Order Now
+                        </button>
+                        <button id="viewMenuBtn" class="border border-orange-500 text-orange-500 font-semibold py-3 px-6 rounded-lg transition duration-300 hover:bg-orange-50 transform hover:scale-105">
+                            View Menu
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-12 md:mt-0 animate-fadeInRight">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Delicious Food" class="w-full h-auto rounded-xl shadow-xl transform hover:scale-105 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="heading">
-    <h1>Delicious Food Delivered to Your Doorstep</h1>
-</div>
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Why Choose BiteOnGo</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">We provide the best food delivery service in town with these amazing features</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition duration-300 animate-fadeInUp" style="animation-delay: 0.1s">
+                    <div class="text-orange-500 mb-4 text-3xl">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="font-semibold text-xl mb-2">Fast Delivery</h3>
+                    <p class="text-gray-600">Get your food delivered in under 30 minutes or get it for free. Our riders are the fastest in town.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition duration-300 animate-fadeInUp" style="animation-delay: 0.2s">
+                    <div class="text-orange-500 mb-4 text-3xl">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="font-semibold text-xl mb-2">Fresh Food</h3>
+                    <p class="text-gray-600">We partner with the best restaurants to bring you fresh, high-quality meals every time.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition duration-300 animate-fadeInUp" style="animation-delay: 0.3s">
+                    <div class="text-orange-500 mb-4 text-3xl">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="font-semibold text-xl mb-2">24/7 Support</h3>
+                    <p class="text-gray-600">Our customer service team is available round the clock to assist you with any issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="sub-heading">
-    <h3>
-        Order from your favourite restaurants and get it delivered fast.
-        Fresh, tasty meals just a click away!
-    </h3>
-    <button>Order Now</button>
-    <button>View Menu</button>
-</div>
+    <!-- Menu Section -->
+    <section id="menu" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Delicious Menu</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Browse through our selection of mouth-watering dishes</p>
+            </div>
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8"></div>
+        </div>
+    </section>
 
-<div class="home-img">
-    <img src="{{ url_for('static', filename='images/home.jpg') }}" alt="Home">
-</div>
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:items-center md:space-x-12">
+                <div class="md:w-1/2 mb-8 md:mb-0 animate-fadeInLeft">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Our Restaurant" class="w-full rounded-xl shadow-lg">
+                </div>
+                <div class="md:w-1/2 animate-fadeInRight">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">About BiteOnGo</h2>
+                    <p class="text-gray-600 mb-4">Founded in 2023, BiteOnGo started as a small local delivery service with just 3 restaurants. Today, we partner with over 200 restaurants across the city to bring you the best dining experience at home.</p>
+                    <p class="text-gray-600 mb-6">Our mission is simple: deliver delicious food fast while maintaining the highest quality standards. We carefully select our restaurant partners to ensure you get only the best meals.</p>
+                    <div class="flex space-x-4">
+                        <div class="text-center p-4 bg-orange-50 rounded-lg">
+                            <div class="text-orange-500 text-2xl font-bold">200+</div>
+                            <div class="text-gray-600">Restaurants</div>
+                        </div>
+                        <div class="text-center p-4 bg-orange-50 rounded-lg">
+                            <div class="text-orange-500 text-2xl font-bold">50k+</div>
+                            <div class="text-gray-600">Happy Customers</div>
+                        </div>
+                        <div class="text-center p-4 bg-orange-50 rounded-lg">
+                            <div class="text-orange-500 text-2xl font-bold">30min</div>
+                            <div class="text-gray-600">Avg. Delivery</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- WHY CHOOSE US -->
-<div class="section">
-    <h2>Why Choose Bite On Go</h2>
-    <h4>We provide the best food delivery service in town with these amazing features</h4>
-</div>
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-orange-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">What Our Customers Say</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Don't just take our word for it - hear from our satisfied customers</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md animate-fadeInUp" style="animation-delay: 0.1s">
+                    <div class="flex items-center mb-4">
+                        <div class="text-orange-500 text-2xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"The food always arrives hot and fresh. I use BiteOngo at least twice a week!"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah J." class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-semibold">Sarah J.</h4>
+                            <p class="text-gray-500 text-sm">Regular Customer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md animate-fadeInUp" style="animation-delay: 0.2s">
+                    <div class="flex items-center mb-4">
+                        <div class="text-orange-500 text-2xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Amazing selection of restaurants. I love trying new cuisines through BiteOngo."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Michael T." class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-semibold">Michael T.</h4>
+                            <p class="text-gray-500 text-sm">Food Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md animate-fadeInUp" style="animation-delay: 0.3s">
+                    <div class="flex items-center mb-4">
+                        <div class="text-orange-500 text-2xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Their delivery is incredibly fast. Perfect for when I'm working late and need a quick meal."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Jennifer L." class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-semibold">Jennifer L.</h4>
+                            <p class="text-gray-500 text-sm">Busy Professional</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="delivery">
-    <h3>Fast Delivery</h3>
-    <h4>Get your food delivered in under 20 minutes or get it free.</h4>
-</div>
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Contact Us</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Have questions or feedback? We'd love to hear from you</p>
+            </div>
+            <div class="md:flex md:space-x-8">
+                <div class="md:w-1/2 mb-8 md:mb-0 animate-fadeInLeft">
+                    <form id="contactForm" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-1">Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition duration-300">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-1">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition duration-300">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-1">Message</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition duration-300"></textarea>
+                        </div>
+                        <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                <div class="md:w-1/2 animate-fadeInRight">
+                    <div class="bg-gray-50 p-6 rounded-xl h-full">
+                        <h3 class="font-semibold text-xl mb-4">Get in Touch</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="text-orange-500 mt-1 mr-3">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Address</h4>
+                                    <p class="text-gray-600">12,Agbede FUNAAB,Abeokuta ,Ogun State</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-orange-500 mt-1 mr-3">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Phone</h4>
+                                    <p class="text-gray-600">+234 9011499918</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-orange-500 mt-1 mr-3">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Email</h4>
+                                    <p class="text-gray-600">adediraneric592@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <h4 class="font-medium mb-3">Opening Hours</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex justify-between">
+                                    <span>Monday - Friday</span>
+                                    <span>9:00 AM - 11:00 PM</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Saturday</span>
+                                    <span>10:00 AM - 12:00 AM</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Sunday</span>
+                                    <span>10:00 AM - 10:00 PM</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="fresh-food">
-    <h3>Fresh Food</h3>
-    <h4>We partner with top restaurants to bring you high-quality meals.</h4>
-</div>
+    <!-- Newsletter Section -->
+    <section class="py-12 bg-orange-500 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">Subscribe to Our Newsletter</h2>
+            <p class="mb-6 max-w-2xl mx-auto">Get updates on special offers, new restaurants, and exclusive deals delivered to your inbox.</p>
+            <form id="newsletterForm" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input type="email" id="newsletterEmail" placeholder="Your email address" required class="flex-grow px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-white text-gray-800">
+                <button type="submit" class="bg-white text-orange-500 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </section>
 
-<div class="support">
-    <h3>24/7 Support</h3>
-    <h4>Our customer service team is available round the clock.</h4>
-</div>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-orange-400">BiteOnGo</h3>
+                    <p class="text-gray-400">Delivering delicious meals to your doorstep since 2025. Fast, fresh, and reliable.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-white transition duration-300">Menu</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Refund Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Delivery Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Download Our App</h3>
+                    <p class="text-gray-400 mb-4">Get the best experience with our mobile app.</p>
+                    <div class="space-y-3">
+                        <a href="#" class="block bg-black text-white py-2 px-4 rounded-lg flex items-center">
+                            <i class="fab fa-apple mr-2 text-xl"></i>
+                            <div class="text-left">
+                                <div class="text-xs">Download on the</div>
+                                <div class="font-medium">App Store</div>
+                            </div>
+                        </a>
+                        <a href="#" class="block bg-black text-white py-2 px-4 rounded-lg flex items-center">
+                            <i class="fab fa-google-play mr-2 text-xl"></i>
+                            <div class="text-left">
+                                <div class="text-xs">Get it on</div>
+                                <div class="font-medium">Google Play</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 BiteOnGo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-<!-- MENU -->
-<div class="menu-heading">
-    <h2>Our Delicious Menu</h2>
-    <h3>Browse through our mouth-watering dishes</h3>
-</div>
+    <style>
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
-<main class="food-container">
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
-    {% set foods = [
-        ('Pizza', 'pizz.jpg', '₦5,000.00', 'Delicious cheese pizza with fresh toppings.'),
-        ('Burger', 'burger.jpg', '₦5,000.00', 'Juicy beef burger with lettuce and cheese.'),
-        ('Shawarma', 'shawarma.jpg', '₦2,000.00', 'Loaded shawarma with tasty fillings.'),
-        ('Doughnuts', 'Doughnuts.jpg', '₦500.00', 'Freshly baked glazed doughnuts.'),
-        ('Eggroll', 'egg                                                                                                                roll.jpg', '₦500.00', 'Delicious eggroll with savory filling.'),
-        ('Meat Pie', 'pie.jpg', '₦700.00', 'Flaky pastry filled with seasoned meat.'),
-        ('Croissants', 'croissants.jpg', '₦500.00', 'Buttery and flaky croissants.'),
-        ('Coldstone', 'coldstone.jpg', '₦2,000.00', 'Creamy coldstone ice cream.'),
-        ('Chicken Chips', 'chicken.jpg', '₦1,500.00', 'Crispy seasoned chicken chips.'),
-        ('Parfait', 'parfait.jpg', '₦1,500.00', 'Yogurt parfait with fruits and granola.'),
-        ('Amala', 'amala.jpg', '₦300.00', 'Traditional Nigerian amala.'),
-        ('Eba', 'eba.jpg', '₦300.00', 'Traditional Nigerian eba.'),
-        ('Fufu', 'fufuu.jpg', '₦300.00', 'Traditional Nigerian fufu.')
-    ] %}
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    {% for food, img, price, desc in foods %}
-    <div class="food">
-        <img src="{{ url_for('static', filename='images/' ~ img) }}" alt="{{ food }}">
-        <h3>{{ food }}</h3>
-        <h4>{{ price }}</h4>
-        <p>{{ desc }}</p>
-        <form onsubmit="sendWhatsApp(event, '{{ food }}')">
-            <button type="submit" class="cart-btn">+ Order</button>
-        </form>
-    </div>
-    {% endfor %}
+        .animate-fadeInLeft {
+            animation: fadeInLeft 0.8s ease-out;
+        }
 
-</main>
+        .animate-fadeInRight {
+            animation: fadeInRight 0.8s ease-out;
+        }
 
-<!-- ABOUT -->
-<section class="about-section">
-    <div class="about-container">
-        <h2>About Bite On Go</h2>
-        <p>
-            Welcome to <strong>Bite On Go</strong>! We deliver delicious,
-            freshly-prepared meals wherever you are.
-        </p>
-        <p>
-            Our mission is simple: <strong>quality, taste, and convenience</strong>.
-            Every meal is crafted with love using fresh ingredients.
-        </p>
-        <p>
-            Thank you for choosing Bite On Go – your go-to spot for great food anytime!
-        </p>
-    </div>
-</section>
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: forwards;
+        }
+    </style>
 
-<!-- ONE WHATSAPP SCRIPT -->
-<script>
-function sendWhatsApp(e, foodName) {
-    e.preventDefault();
-
-    const message = `Hello Bite On Go!
-I would like to order ${foodName}.
-
-Quantity:
-Phone Number:
-Delivery Address:`;
-
-    const url = "https://wa.me/2347071727790?text=" + encodeURIComponent(message);
-    window.open(url, "_blank");
-}
-</script>
-
+    <script>
+        const STATIC_URL = "{{ url_for('static', filename='images/') }}";
+        
+        const products = [
+            { name: "Pizza", price: "₦5,000.00", image: STATIC_URL + "pizz.jpg", desc: "Delicious cheese pizza with fresh toppings." },
+            { name: "Burger", price: "₦5,000.00", image: STATIC_URL + "burger.jpg", desc: "Juicy beef burger with lettuce and cheese." },
+            { name: "Shawarma", price: "₦2,000.00", image: STATIC_URL + "shawarma.jpg", desc: "Loaded shawarma with tasty fillings." },
+            { name: "Doughnuts", price: "₦500.00", image: STATIC_URL + "Doughnuts.jpg", desc: "Freshly baked glazed doughnuts." },
+            { name: "Eggroll", price: "₦500.00", image: STATIC_URL + "eggroll.jpg", desc: "Delicious eggroll with savory filling." },
+            { name: "Meat Pie", price: "₦700.00", image: STATIC_URL + "pie.jpg", desc: "Flaky pastry filled with seasoned meat." },
+            { name: "Croissants", price: "₦500.00", image: STATIC_URL + "croissants.jpg", desc: "Buttery and flaky croissants." },
+            { name: "Coldstone", price: "₦2,000.00", image: STATIC_URL + "coldstone.jpg", desc: "Creamy coldstone ice cream." },
+            { name: "Chicken Chips", price: "₦1,500.00", image: STATIC_URL + "chicken.jpg", desc: "Crispy chicken chips with seasoning." },
+            { name: "Parfait", price: "₦1,500.00", image: STATIC_URL + "parfait.jpg", desc: "Layered yogurt parfait with fruits." }
+        ];
+        
+        const grid = document.getElementById("productGrid");
+        
+        // Render products
+        products.forEach((product, index) => {
+            grid.innerHTML += `
+                <div class="bg-white rounded-xl p-4 shadow-md hover:-translate-y-2 hover:shadow-xl transition duration-300">
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-40 object-cover rounded-lg" onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                    <h3 class="mt-3 text-lg font-semibold">${product.name}</h3>
+                    <p class="text-sm text-gray-500 mt-1">${product.desc}</p>
+                    <p class="mt-3 text-orange-500 font-bold">${product.price}</p>
+                    <button onclick="addToCartFromHome(${index})" class="mt-4 w-full bg-orange-500 text-white py-2 rounded-full text-sm font-semibold hover:bg-orange-600 transition">
+                        Add to Cart
+                    </button>
+                </div>
+            `;
+        });
+        
+        // Add to cart function that uses base.html's cart
+        window.addToCartFromHome = function(index) {
+            const product = products[index];
+            // Call the global addToCart function from base.html
+            if (typeof window.addToCart === 'function') {
+                window.addToCart(product);
+            } else {
+                console.error('addToCart function not found');
+                alert('Please refresh the page and try again.');
+            }
+        };
+        
+        // Scroll to menu
+        document.getElementById("orderNowBtn").addEventListener("click", () => {
+            document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
+        });
+        
+        document.getElementById("viewMenuBtn").addEventListener("click", () => {
+            document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
+        });
+        
+        // Contact form submission
+        document.getElementById("contactForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const name = document.getElementById("name").value;
+            alert(`Thank you ${name}! We will get back to you soon.`);
+            this.reset();
+        });
+        
+        // Newsletter form submission
+        document.getElementById("newsletterForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const email = document.getElementById("newsletterEmail").value;
+            alert(`Thanks for subscribing with ${email}! You'll receive our latest updates.`);
+            this.reset();
+        });
+    </script>
 {% endblock %}

@@ -1,86 +1,642 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Bite On Go</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>{% block title %}BiteOnGo - Delicious Food Delivered Fast{% endblock %}</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+        }
+        
+        /* Food container styles */
+        .food-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .food {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .food:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .food img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .food h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            padding: 15px 15px 5px;
+        }
+        
+        .food h4 {
+            font-size: 1.125rem;
+            color: #f97316;
+            font-weight: 700;
+            padding: 0 15px 10px;
+        }
+        
+        .food p {
+            color: #6b7280;
+            padding: 0 15px 15px;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        
+        .cart-btn {
+            width: calc(100% - 30px);
+            margin: 0 15px 20px;
+            background: #f97316;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .cart-btn:hover {
+            background: #ea580c;
+            transform: scale(1.02);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Cart sidebar styles - FIXED */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 9999;
+            overflow-y: auto;
+        }
+        
+        .cart-sidebar.open {
+            transform: translateX(0);
+        }
+        
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9998;
+            display: none;
+        }
+        
+        .cart-overlay.show {
+            display: block;
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10000;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .notification.warning {
+            background: #f59e0b;
+        }
+
+        .notification.error {
+            background: #ef4444;
+        }
+
+        .notification.success {
+            background: #10b981;
+        }
+        
+        /* Mobile menu improvements */
+        #mobile-menu {
+            transition: all 0.3s ease;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        #mobile-menu a:active {
+            background-color: #fff7ed;
+        }
+        
+        /* Cart button highlight */
+        #cart-btn {
+            position: relative;
+        }
+        
+        #cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #f97316;
+            color: white;
+            border-radius: 50%;
+            min-width: 18px;
+            height: 18px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 4px;
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
 </head>
-
 <body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex space-x-7">
+                    <!-- Logo -->
+                    <div>
+                        <a href="{{ url_for('home_auth.home') }}" class="flex items-center py-4 px-2">
+                            <span class="font-bold text-orange-500 text-2xl">BiteOnGo</span>
+                        </a>
+                    </div>
 
-<header class="logo-header">
-    <a href="{{ url_for('home_auth.home') }}" class="logo-wrap">
-        <img src="{{ url_for('static', filename='images/eat_logo.jpeg') }}" alt="Bite On Go Logo">
-        <small class="logo-address">Abeokuta, Ogun State, Nigeria</small>
-    </a>
+                    <!-- Primary Nav - Desktop -->
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="{{ url_for('home_auth.home') }}"
+                           class="py-4 px-2 {% if request.endpoint == 'home_auth.home' %}text-orange-500 border-b-4 border-orange-500 font-semibold{% else %}text-gray-600 font-medium hover:text-orange-500{% endif %} transition duration-300">
+                           Home
+                        </a>
 
-    <div class="header-text">
-        <h1>Bite On Go</h1>
-        <p class="tagline">Meals • Drinks • Pastries • More</p>
+                        <a href="{{ url_for('home_auth.menu') }}"
+                           class="py-4 px-2 text-gray-600 font-medium hover:text-orange-500 transition duration-300">
+                           Menu
+                        </a>
+
+                        <a href="{{ url_for('about_auth.about') }}"
+                           class="py-4 px-2 text-gray-600 font-medium hover:text-orange-500 transition duration-300">
+                           About
+                        </a>
+
+                        <a href="{{ url_for('contact_auth.contact') }}"
+                           class="py-4 px-2 text-gray-600 font-medium hover:text-orange-500 transition duration-300">
+                           Contact
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Secondary Nav - Desktop -->
+                <div class="hidden md:flex items-center space-x-4">
+                    {% if current_user.is_authenticated %}
+                        <div class="relative group">
+                            <button class="py-2 px-3 font-medium text-gray-600 rounded hover:bg-orange-50 hover:text-orange-500 transition duration-300">
+                                <i class="fas fa-user mr-1"></i> {{ current_user.first_name }}
+                                <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </button>
+                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg hidden group-hover:block z-50">
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-orange-50">Profile</a>
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-orange-50">My Orders</a>
+                                <a href="{{ url_for('auth.logout') }}" class="block px-4 py-2 text-red-600 hover:bg-red-50">Logout</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <a href="{{ url_for('auth.login') }}"
+                           class="py-2 px-3 font-medium text-gray-600 rounded hover:bg-orange-50 hover:text-orange-500 transition duration-300">
+                            <i class="fas fa-user mr-1"></i> Log In
+                        </a>
+
+                        <a href="{{ url_for('auth.register') }}"
+                           class="py-2 px-3 font-medium text-white bg-orange-500 rounded-lg hover:bg-orange-600 transition duration-300">
+                            <i class="fas fa-sign-in-alt mr-1"></i> Sign Up
+                        </a>
+                    {% endif %}
+
+                    <!-- CART BUTTON - MAKE SURE IT'S VISIBLE -->
+                    <button id="cart-btn" class="py-2 px-3 relative hover:bg-orange-50 rounded-full transition duration-300">
+                        <i class="fas fa-shopping-cart text-gray-600 hover:text-orange-500 text-xl"></i>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                            0
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center space-x-3">
+                    <!-- Mobile Cart Button -->
+                    <button id="mobile-cart-btn" class="relative py-2 px-2">
+                        <i class="fas fa-shopping-cart text-gray-600 text-xl"></i>
+                        <span id="mobile-cart-count" class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                            0
+                        </span>
+                    </button>
+                    
+                    <button id="mobile-menu-btn" class="outline-none focus:outline-none p-2 rounded-lg hover:bg-gray-100">
+                        <svg class="w-6 h-6 text-gray-600 hover:text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full z-50" style="left: 0; right: 0;">
+            <a href="{{ url_for('home_auth.home') }}" class="block py-3 px-4 hover:bg-orange-50 border-b">🏠 Home</a>
+            <a href="{{ url_for('home_auth.menu') }}" class="block py-3 px-4 hover:bg-orange-50 border-b">🍽️ Menu</a>
+            <a href="{{ url_for('about_auth.about') }}" class="block py-3 px-4 hover:bg-orange-50 border-b">📖 About</a>
+            <a href="{{ url_for('contact_auth.contact') }}" class="block py-3 px-4 hover:bg-orange-50 border-b">📞 Contact</a>
+
+            <div class="py-3 px-4 border-t">
+                {% if current_user.is_authenticated %}
+                    <div class="text-center py-2 text-gray-600 mb-2">
+                        <i class="fas fa-user mr-1"></i> {{ current_user.first_name }}
+                    </div>
+                    <a href="{{ url_for('auth.logout') }}"
+                       class="block text-center py-2 bg-red-500 text-white rounded-lg mt-2">
+                       <i class="fas fa-sign-out-alt mr-1"></i> Logout
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('auth.login') }}"
+                       class="block text-center py-2 hover:bg-orange-50 rounded-lg">
+                       <i class="fas fa-user mr-1"></i> Log In
+                    </a>
+                    <a href="{{ url_for('auth.register') }}"
+                       class="block text-center py-2 bg-orange-500 text-white rounded-lg mt-2">
+                       <i class="fas fa-sign-in-alt mr-1"></i> Sign Up
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="p-4">
+            <div class="flex justify-between items-center border-b pb-4">
+                <h3 class="text-xl font-bold">Your Cart 🛒</h3>
+                <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div id="cart-items" class="py-4" style="max-height: 60vh; overflow-y: auto;">
+                <p class="text-gray-500 text-center py-8">Your cart is empty</p>
+            </div>
+            <div class="border-t pt-4">
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-600">Subtotal:</span>
+                    <span id="cart-subtotal" class="font-medium">₦0</span>
+                </div>
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-600">Delivery Fee:</span>
+                    <span class="font-medium">₦500</span>
+                </div>
+                <div class="flex justify-between mb-4 border-t pt-2">
+                    <span class="font-semibold">Total:</span>
+                    <span id="cart-total" class="font-bold text-orange-500">₦500</span>
+                </div>
+                <button id="checkout-whatsapp" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                    <i class="fab fa-whatsapp mr-2"></i> Checkout via WhatsApp
+                </button>
+            </div>
+        </div>
     </div>
-</header>
+    
+    <div id="cart-overlay" class="cart-overlay"></div>
 
-<nav class="navbar">
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <!-- JavaScript -->
+    <script>
+        // Cart functionality
+        let cart = [];
+        
+        // Load cart from localStorage
+        function loadCart() {
+            const savedCart = localStorage.getItem('biteongoCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCart();
+                updateCartCounts();
+            }
+        }
+        
+        // Save cart to localStorage
+        function saveCart() {
+            localStorage.setItem('biteongoCart', JSON.stringify(cart));
+            updateCartCounts();
+        }
+        
+        // Update cart count badge on both desktop and mobile
+        function updateCartCounts() {
+            const count = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+            
+            const cartCountElem = document.getElementById('cart-count');
+            const mobileCartCountElem = document.getElementById('mobile-cart-count');
+            
+            if (cartCountElem) cartCountElem.textContent = count;
+            if (mobileCartCountElem) mobileCartCountElem.textContent = count;
+        }
+        
+        // Update cart display
+        function updateCart() {
+            const cartItemsElem = document.getElementById('cart-items');
+            const subtotalElem = document.getElementById('cart-subtotal');
+            const totalElem = document.getElementById('cart-total');
+            
+            let subtotal = 0;
+            
+            if (!cartItemsElem) return;
+            
+            if (cart.length === 0) {
+                cartItemsElem.innerHTML = '<p class="text-gray-500 text-center py-8">Your cart is empty</p>';
+                subtotalElem.textContent = '₦0';
+                totalElem.textContent = '₦500';
+                return;
+            }
+            
+            cartItemsElem.innerHTML = '';
+            
+            cart.forEach((item, index) => {
+                const price = parseFloat(item.price.replace(/[₦,]/g, ''));
+                const itemTotal = price * (item.quantity || 1);
+                subtotal += itemTotal;
+                
+                cartItemsElem.innerHTML += `
+                    <div class="flex justify-between items-center mb-4 pb-2 border-b">
+                        <div class="flex-1">
+                            <p class="font-semibold">${item.name}</p>
+                            <p class="text-sm text-gray-500">${item.price}</p>
+                            <div class="flex items-center mt-2">
+                                <button onclick="updateQuantity(${index}, -1)" class="w-6 h-6 bg-gray-200 rounded-full hover:bg-gray-300">-</button>
+                                <span class="mx-2 text-sm">${item.quantity || 1}</span>
+                                <button onclick="updateQuantity(${index}, 1)" class="w-6 h-6 bg-gray-200 rounded-full hover:bg-gray-300">+</button>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 ml-2">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            
+            subtotalElem.textContent = '₦' + subtotal.toLocaleString();
+            const delivery = 500;
+            const total = subtotal + delivery;
+            totalElem.textContent = '₦' + total.toLocaleString();
+            
+            updateCartCounts();
+        }
+        
+        // Update quantity
+        function updateQuantity(index, change) {
+            if (cart[index]) {
+                const newQuantity = (cart[index].quantity || 1) + change;
+                if (newQuantity <= 0) {
+                    removeFromCart(index);
+                } else {
+                    cart[index].quantity = newQuantity;
+                    saveCart();
+                    updateCart();
+                }
+            }
+        }
+        
+        // Remove from cart
+        function removeFromCart(index) {
+            const removedItem = cart[index];
+            cart.splice(index, 1);
+            saveCart();
+            updateCart();
+            showNotification(`${removedItem.name} removed from cart`, 'info');
+        }
+        
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            const icon = type === 'warning' ? 'fa-exclamation-triangle' : (type === 'error' ? 'fa-times-circle' : 'fa-check-circle');
+            notification.innerHTML = `<i class="fas ${icon} mr-2"></i> ${message}`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 4000);
+        }
+        
+        // Cart sidebar functions
+        function openCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            const overlay = document.getElementById('cart-overlay');
+            if (sidebar && overlay) {
+                sidebar.classList.add('open');
+                overlay.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            const overlay = document.getElementById('cart-overlay');
+            if (sidebar && overlay) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Add to cart function with login check
+        window.addToCart = function(product) {
+            {% if not current_user.is_authenticated %}
+                showNotification('Please login to add items to cart!', 'warning');
+                setTimeout(() => {
+                    if (confirm('You need to login first to add items to cart. Would you like to login now?')) {
+                        window.location.href = "{{ url_for('auth.login') }}";
+                    }
+                }, 500);
+                return;
+            {% else %}
+                const existingItem = cart.find(item => item.name === product.name);
+                
+                if (existingItem) {
+                    existingItem.quantity = (existingItem.quantity || 1) + 1;
+                } else {
+                    cart.push({ ...product, quantity: 1 });
+                }
+                
+                saveCart();
+                updateCart();
+                showNotification(`${product.name} added to cart!`, 'success');
+                // Auto open cart on mobile for better UX
+                if (window.innerWidth < 768) {
+                    openCart();
+                }
+            {% endif %}
+        };
 
-    <div class="nav-links" id="navLinks">
-        {% if current_user.is_authenticated %}
-            <a href="{{ url_for('auth.logout') }}">Logout</a>
-            <a href="{{ url_for('contact_auth.contact') }}">Contact us</a>
-            <a href="{{ url_for('about_auth.about') }}">About us</a>
-            <span class="user-greeting">Hello, {{ current_user.first_name }}!</span>
-        {% else %}
-            <a href="{{ url_for('auth.login') }}">Login</a>
-            <a href="{{ url_for('auth.register') }}">Register</a>
-            <a href="{{ url_for('contact_auth.contact') }}">Contact us</a>
-            <a href="{{ url_for('home_auth.home') }}">Menu</a>
-            <a href="{{ url_for('about_auth.about') }}">About us</a>
-        {% endif %}
-    </div>
-</nav>
+        // WhatsApp checkout with login check
+        const isAuthenticated = {{ current_user.is_authenticated | tojson }};
+        function checkoutViaWhatsApp() {
+        if (cart.length === 0) {
+            showNotification('Your cart is empty!', 'error');
+            return;
+        }
 
+        if (isAuthenticated) {
+            let orderSummary = "🍔 *BiteOnGo Order Summary* 🍕\n\n";
+            let total = 0;
 
-<script>
-function toggleMenu() {
-    document.getElementById("navLinks").classList.toggle("show");
-}
-</script>
+            cart.forEach(item => {
+                const price = parseFloat(item.price.replace(/[₦,]/g, ''));
+                const itemTotal = price * (item.quantity || 1);
+                total += itemTotal;
+                orderSummary += `• ${item.name} x${item.quantity || 1} = ₦${itemTotal.toLocaleString()}\n`;
+            });
 
-{% block content %}
+            const delivery = 500;
+            const grandTotal = total + delivery;
 
-<main class="food-container">
+            orderSummary += `\n📦 *Delivery Fee:* ₦${delivery.toLocaleString()}`;
+            orderSummary += `\n💰 *Total:* ₦${grandTotal.toLocaleString()}`;
+            orderSummary += `\n\n👤 *Customer Information:*`;
+            orderSummary += `\n• Name: {{ current_user.first_name }} {{ current_user.last_name }}`;
+            orderSummary += `\n• Email: {{ current_user.email }}`;
 
-    {% for food in foods %}
-    <div class="food">
-        <img src="{{ url_for('static', filename='images/' ~ food.image) }}" alt="{{ food.name }}">
-        <h3>{{ food.name }}</h3>
-        <h4>{{ food.price }}</h4>
-        <p>{{ food.desc }}</p>
+            const message = encodeURIComponent(orderSummary);
+            const phoneNumber = "2347075437522";
 
-        <form onsubmit="sendWhatsApp(event, '{{ food.name }}')">
-            <button type="submit" class="cart-btn">+ Order</button>
-        </form>
-    </div>
-    {% endfor %}
-<script>
-function sendWhatsApp(e, foodName) {
-    e.preventDefault();
+            const url = `https://wa.me/${phoneNumber}?text=${message}`;
 
-    const message = `Hello Bite On Go!
-I would like to order ${foodName}.
+            window.open(url, "_blank");
+            closeCart();
 
-Quantity:
-Phone Number:
-Delivery Address:`;
+        } else {
+            showNotification('Please login to continue with checkout!', 'warning');
 
-    const url = "https://wa.me/2347071227790?text=" + encodeURIComponent(message);
-    window.open(url, "_blank");
-}
-</script>
-</main>
+            setTimeout(() => {
+                if (confirm('You need to login first to place an order. Login now?')) {
+                    window.location.href = "{{ url_for('auth.login') }}";
+                }
+            }, 500);
+        }
+    }
+        
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCart();
+            
+            // Desktop cart button
+            const cartBtn = document.getElementById('cart-btn');
+            // Mobile cart button
+            const mobileCartBtn = document.getElementById('mobile-cart-btn');
+            const closeCartBtn = document.getElementById('close-cart');
+            const overlay = document.getElementById('cart-overlay');
+            const checkoutBtn = document.getElementById('checkout-whatsapp');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (cartBtn) cartBtn.addEventListener('click', openCart);
+            if (mobileCartBtn) mobileCartBtn.addEventListener('click', openCart);
+            if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
+            if (overlay) overlay.addEventListener('click', closeCart);
+            if (checkoutBtn) checkoutBtn.addEventListener('click', checkoutViaWhatsApp);
+            
+            // Mobile menu toggle
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    mobileMenu.classList.toggle('hidden');
+                });
+                
+                // Close mobile menu when clicking on a link
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+                
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (mobileMenu && !mobileMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
+    
+    {% block extra_js %}{% endblock %}
 </body>
 </html>
-{% endblock %} 

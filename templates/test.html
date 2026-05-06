@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Tesla Careers | Clone</title>
+  <style>
+    /* ===== RESET & BASE STYLES ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #000000;
+      color: #ffffff;
+      line-height: 1.5;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .text-display-large {
+      font-size: 56px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    .text-display-medium {
+      font-size: 48px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    .text-heading-1 {
+      font-size: 40px;
+      font-weight: 500;
+    }
+
+    .text-heading-2 {
+      font-size: 32px;
+      font-weight: 500;
+    }
+
+    .text-heading-3 {
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    .text-body {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #a0a0a0;
+    }
+
+    .text-caption {
+      font-size: 12px;
+      color: #6b6b6b;
+    }
+
+    @media (min-width: 768px) {
+      .text-display-large { font-size: 64px; }
+      .text-display-medium { font-size: 56px; }
+      .text-heading-1 { font-size: 48px; }
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 32px;
+      border-radius: 4px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .btn-primary:hover {
+      background-color: #e0e0e0;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: #ffffff;
+      border: 1px solid #ffffff;
+    }
+
+    .btn-outline:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ===== HEADER ===== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 16px 24px;
+      background: transparent;
+      transition: background 0.3s ease;
+    }
+
+    .header-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .menu-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      height: 100vh;
+      min-height: 600px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 0 24px;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #cccccc;
+      margin-bottom: 32px;
+    }
+
+    /* ===== SECTIONS ===== */
+    .section {
+      padding: 80px 24px;
+    }
+
+    .section-dark {
+      background-color: #000000;
+    }
+
+    .section-light {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .section-light .text-body {
+      color: #4a4a4a;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 48px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .stat-number { font-size: 64px; }
+    }
+
+    /* Two Column Layout */
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    @media (min-width: 768px) {
+      .two-column {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+      }
+    }
+
+    .feature-card {
+      margin-bottom: 24px;
+    }
+
+    .feature-card img {
+      width: 100%;
+      border-radius: 16px;
+      margin-bottom: 24px;
+    }
+
+    /* Carousel / Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    @media (min-width: 640px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .cards-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .card {
+      background: #111111;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .card-description {
+      font-size: 14px;
+      color: #a0a0a0;
+      margin-bottom: 16px;
+    }
+
+    .card-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Carousel Tabs */
+    .tabs-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 40px;
+    }
+
+    .tab {
+      padding: 12px 24px;
+      cursor: pointer;
+      color: #888;
+      transition: color 0.2s;
+    }
+
+    .tab.active {
+      color: white;
+      border-bottom: 2px solid white;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .tab-media {
+      width: 100%;
+      border-radius: 24px;
+      margin-bottom: 32px;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 48px 24px;
+      border-top: 1px solid #222;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .footer-links a {
+      color: #888;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    /* Utility */
+    .mt-16 { margin-top: 16px; }
+    .mt-32 { margin-top: 32px; }
+    .mb-16 { margin-bottom: 16px; }
+    .mb-32 { margin-bottom: 32px; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#" class="logo">TESLA</a>
+      <button class="menu-btn" id="menuBtn">☰</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="text-display-large">Careers</h1>
+        <p>Build a World of Amazing Abundance</p>
+        <div class="btn-group">
+          <a href="#" class="btn btn-primary">Explore Jobs</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section section-dark">
+      <div class="container text-center">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">150+</div>
+            <div class="text-caption">Teams</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">53</div>
+            <div class="text-caption">Countries</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">1</div>
+            <div class="text-caption">Mission</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="section section-light">
+      <div class="container text-center">
+        <h2 class="text-heading-1 mb-16">Become Part of Our Mission</h2>
+        <p class="text-body" style="max-width: 800px; margin: 0 auto;">
+          Our mission is to build a world of amazing abundance. Our employees are driving that mission forward through their work in sustainable transport, renewable energy, robotics and AI. Join us in solving the engineering, manufacturing and operational challenges that will unlock the future of Tesla.
+        </p>
+      </div>
+    </section>
+
+    <!-- Products Carousel (simplified as cards) -->
+    <section class="section section-dark">
+      <div class="container text-center">
+        <h2 class="text-heading-1 mb-16">Work on Innovative Products</h2>
+        <div class="cards-grid">
+          <div class="card">
+            <img class="card-image" src="https://images.unsplash.com/photo-1617704548623-340376564e68?w=400&h=200&fit=crop" alt="Robotaxi">
+            <div class="card-content">
+              <h3 class="card-title">Robotaxi</h3>
+              <p class="card-description">Develop the future of autonomous transportation.</p>
+              <a href="#" class="card-link">Learn More →</a>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-image" src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&h=200&fit=crop" alt="FSD">
+            <div class="card-content">
+              <h3 class="card-title">Full Self-Driving</h3>
+              <p class="card-description">Build AI that can drive better than humans.</p>
+              <a href="#" class="card-link">Learn More →</a>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-image" src="https://images.unsplash.com/photo-1535378620166-273708d44e4c?w=400&h=200&fit=crop" alt="Optimus">
+            <div class="card-content">
+              <h3 class="card-title">Optimus</h3>
+              <p class="card-description">Solve embodied intelligence and work on humanoid robots.</p>
+              <a href="#" class="card-link">Learn More →</a>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-image" src="https://images.unsplash.com/photo-1611270418590-51a5c8f9a92d?w=400&h=200&fit=crop" alt="Megapack">
+            <div class="card-content">
+              <h3 class="card-title">Megapack</h3>
+              <p class="card-description">Large-scale energy storage for utilities and communities.</p>
+              <a href="#" class="card-link">Learn More →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Departments (Tabs) -->
+    <section class="section section-light">
+      <div class="container text-center">
+        <h2 class="text-heading-1 mb-32">Featured Departments</h2>
+        
+        <div class="tabs-container">
+          <div class="tabs">
+            <div class="tab active" data-tab="0">Artificial Intelligence</div>
+            <div class="tab" data-tab="1">Vehicle Software</div>
+            <div class="tab" data-tab="2">Manufacturing</div>
+            <div class="tab" data-tab="3">Cell Engineering</div>
+            <div class="tab" data-tab="4">Service</div>
+          </div>
+          
+          <div class="tab-content active" data-content="0">
+            <img class="tab-media" src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=400&fit=crop" alt="AI">
+            <h3>Artificial Intelligence</h3>
+            <p class="text-body mt-16">Build and scale the models that support the advancement of our AI technology.</p>
+          </div>
+          
+          <div class="tab-content" data-content="1">
+            <img class="tab-media" src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=400&fit=crop" alt="Vehicle Software">
+            <h3>Vehicle Software</h3>
+            <p class="text-body mt-16">Develop, optimize and scale the software that powers our vehicles.</p>
+          </div>
+          
+          <div class="tab-content" data-content="2">
+            <img class="tab-media" src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=800&h=400&fit=crop" alt="Manufacturing">
+            <h3>Manufacturing</h3>
+            <p class="text-body mt-16">Join engineers, technicians and production professionals in the design and manufacturing of our products.</p>
+          </div>
+          
+          <div class="tab-content" data-content="3">
+            <img class="tab-media" src="https://images.unsplash.com/photo-1573164574572-cb89e39749b4?w=800&h=400&fit=crop" alt="Cell Engineering">
+            <h3>Cell Engineering</h3>
+            <p class="text-body mt-16">Solve the next generation of battery challenges to reach terawatt-scale battery production.</p>
+          </div>
+          
+          <div class="tab-content" data-content="4">
+            <img class="tab-media" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=400&fit=crop" alt="Service">
+            <h3>Service</h3>
+            <p class="text-body mt-16">Perform structural and cosmetic repairs on our vehicles.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Life at Tesla (Two Column) -->
+    <section class="section section-dark">
+      <div class="container">
+        <div class="two-column">
+          <div class="feature-card">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop" alt="Collaborative Environment">
+            <h3 class="text-heading-2 mb-8">Collaborative Environment</h3>
+            <p class="text-body">We've replaced corporate hierarchy with open communication and a collaborative working environment. By promoting a safe, innovative and inclusive culture, everyone can succeed.</p>
+          </div>
+          <div class="feature-card">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=400&fit=crop" alt="Benefits">
+            <h3 class="text-heading-2 mb-8">Competitive Benefits</h3>
+            <p class="text-body">We provide medical, dental, vision coverage, 401(k) and generous paid time off from day one. With flexible scheduling and stock benefits for everyone.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="section section-light">
+      <div class="container">
+        <div class="text-center mb-32">
+          <h2 class="text-heading-1">Accelerate Your Career</h2>
+          <p class="text-body mt-16">Gain hands-on experience with our internship and career programs.</p>
+        </div>
+        
+        <div class="two-column">
+          <div class="feature-card">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=400&fit=crop" alt="Internships">
+            <h3 class="text-heading-2 mb-8">Internships</h3>
+            <p class="text-body mb-16">Work on high-impact projects and expand your technical skills. Tesla interns are expected to perform to the same standard of excellence as our full-time employees.</p>
+            <a href="#" class="btn btn-outline">Learn More</a>
+          </div>
+          <div class="feature-card">
+            <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&h=400&fit=crop" alt="MDP">
+            <h3 class="text-heading-2 mb-8">Manufacturing Development Program</h3>
+            <p class="text-body mb-16">Designed to provide graduating high school seniors with the financial resources, coursework and experience they need to start a successful manufacturing career.</p>
+            <a href="#" class="btn btn-outline">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="hero" style="min-height: 400px; background: linear-gradient(135deg, #0a0a2e 0%, #000000 100%);">
+      <div class="hero-content">
+        <h2 class="text-display-medium mb-16">Join Us</h2>
+        <p class="mb-32">Help us build a world of amazing abundance.</p>
+        <a href="#" class="btn btn-primary">Explore Jobs</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#">Tesla © 2026</a>
+        <a href="#">Privacy &amp; Legal</a>
+        <a href="#">Contact</a>
+        <a href="#">News</a>
+        <a href="#">Locations</a>
+      </div>
+      <p class="text-caption">Tesla is an Equal Opportunity employer. All qualified applicants will receive consideration for employment without regard to any factor.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Tab functionality
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabId = tab.getAttribute('data-tab');
+        
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        contents.forEach(content => {
+          content.classList.remove('active');
+          if (content.getAttribute('data-content') === tabId) {
+            content.classList.add('active');
+          }
+        });
+      });
+    });
+
+    // Simple header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.style.background = 'rgba(0, 0, 0, 0.9)';
+        header.style.backdropFilter = 'blur(10px)';
+      } else {
+        header.style.background = 'transparent';
+        header.style.backdropFilter = 'none';
+      }
+    });
+
+    // Mobile menu placeholder
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      alert('Navigation menu would open here');
+    });
+  </script>
+
+</body>
+</html>

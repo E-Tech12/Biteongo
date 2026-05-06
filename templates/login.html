@@ -1,43 +1,491 @@
 {% extends "base.html" %}
-{% block title %}Login{% endblock %}
+
+{% block title %}Login | Bite On Go{% endblock %}
+
 {% block content %}
-<div class="form-container">
-    <h2>Login to Your Account</h2>
-    <form method="POST" action="{{ url_for('auth.login') }}">
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" required>
+<style>
+    .form-container {
+        max-width: 500px;
+        margin: 60px auto;
+        padding: 40px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        animation: fadeInUp 0.6s ease-out;
+    }
+    
+    .form-container h2 {
+        font-size: 28px;
+        font-weight: bold;
+        color: #1f2937;
+        margin-bottom: 30px;
+        text-align: center;
+        position: relative;
+    }
+    
+    .form-container h2:after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: #f97316;
+        border-radius: 2px;
+    }
+    
+    .form-container label {
+        display: block;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    
+    .form-container input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        margin-bottom: 20px;
+        outline: none;
+    }
+    
+    .form-container input:focus {
+        border-color: #f97316;
+        box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+    }
+    
+    .form-container button {
+        width: 100%;
+        background: #f97316;
+        color: white;
+        padding: 14px;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+    }
+    
+    .form-container button:hover {
+        background: #ea580c;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
+    }
+    
+    .helper {
+        text-align: center;
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e7eb;
+    }
+    
+    .helper p {
+        color: #6b7280;
+        font-size: 14px;
+        margin: 10px 0;
+    }
+    
+    .helper a {
+        color: #f97316;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+    
+    .helper a:hover {
+        color: #ea580c;
+        text-decoration: underline;
+    }
+    
+    .popup-message {
+        visibility: hidden;
+        min-width: 300px;
+        background-color: #f97316;
+        color: white;
+        text-align: center;
+        border-radius: 12px;
+        padding: 16px;
+        position: fixed;
+        z-index: 1000;
+        top: 30px;
+        right: 30px;
+        font-size: 14px;
+        font-weight: 500;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .popup-message.show {
+        visibility: visible;
+        opacity: 1;
+    }
+    
+    /* Loading state for button */
+    .form-container button.loading {
+        background: #d97706;
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+    
+    .form-container button.loading:after {
+        content: '...';
+        animation: dots 1.5s steps(5, end) infinite;
+    }
+    
+    @keyframes dots {
+        0%, 20% { content: '.'; }
+        40% { content: '..'; }
+        60%, 100% { content: '...'; }
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Social login buttons */
+    .social-login {
+        margin-top: 25px;
+    }
+    
+    .social-login p {
+        text-align: center;
+        color: #6b7280;
+        font-size: 14px;
+        margin-bottom: 15px;
+        position: relative;
+    }
+    
+    .social-login p:before,
+    .social-login p:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 30%;
+        height: 1px;
+        background: #e5e7eb;
+    }
+    
+    .social-login p:before {
+        left: 0;
+    }
+    
+    .social-login p:after {
+        right: 0;
+    }
+    
+    .social-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+    }
+    
+    .social-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px;
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        background: white;
+        color: #374151;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .social-btn:hover {
+        border-color: #f97316;
+        background: #fff7ed;
+        transform: translateY(-2px);
+    }
+    
+    .social-btn i {
+        font-size: 20px;
+    }
+    
+    .social-btn.google i {
+        color: #db4437;
+    }
+    
+    .social-btn.facebook i {
+        color: #4267b2;
+    }
+    
+    /* Error styling */
+    .form-container input.error {
+        border-color: #ef4444;
+    }
+    
+    .error-message {
+        color: #ef4444;
+        font-size: 12px;
+        margin-top: -15px;
+        margin-bottom: 15px;
+        display: block;
+    }
+</style>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-
-        <button type="submit">Login</button>
-    </form>
-  <div class="helper">
-    <p>Don't have an account? <a href="{{ url_for('auth.register') }}">Register here</a></p>
-        <p>Forgot password?<a href="{{ url_for ('auth.reset_password')}}">reset here</a></p>
+<div class="min-h-screen bg-gradient-to-r from-orange-50 to-amber-50 py-12">
+    <div class="form-container">
+        <h2>Welcome Back! 👋</h2>
+        <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px;">
+            Login to continue your food journey
+        </p>
+        
+        <form id="loginForm" method="POST" action="{{ url_for('auth.login') }}">
+            <label for="email">
+                <i class="fas fa-envelope" style="margin-right: 8px; color: #f97316;"></i>
+                Email Address
+            </label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <div id="emailError" class="error-message"></div>
+            
+            <label for="password">
+                <i class="fas fa-lock" style="margin-right: 8px; color: #f97316;"></i>
+                Password
+            </label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <div id="passwordError" class="error-message"></div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <label style="display: flex; align-items: center; cursor: pointer;">
+                    <input type="checkbox" id="remember" name="remember" style="width: auto; margin-right: 8px; margin-bottom: 0;">
+                    <span style="font-weight: normal; font-size: 14px;">Remember me</span>
+                </label>
+            </div>
+            
+            <button type="submit" id="loginBtn">
+                <i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i>
+                Login
+            </button>
+        </form>
+        
+        <div class="social-login">
+            <p>Or login with</p>
+            <div class="social-buttons">
+                <button class="social-btn google" onclick="socialLogin('google')">
+                    <i class="fab fa-google"></i>
+                    Google
+                </button>
+                <button class="social-btn facebook" onclick="socialLogin('facebook')">
+                    <i class="fab fa-facebook-f"></i>
+                    Facebook
+                </button>
+            </div>
+        </div>
+        
+        <div class="helper">
+            <p>Don't have an account? <a href="{{ url_for('auth.register') }}">Sign up now</a></p>
+            <p><a href="{{ url_for('auth.reset_password') }}">Forgot your password?</a></p>
+        </div>
     </div>
 </div>
 
 <div id="popup-message" class="popup-message">
+    <i class="fas fa-info-circle" style="margin-right: 10px;"></i>
     <span id="popup-text"></span>
 </div>
-
 
 <script>
     const popup = document.getElementById('popup-message');
     const popupText = document.getElementById('popup-text');
-
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        popupText.textContent = "{{ messages[0] }}";
+    const loginForm = document.getElementById('loginForm');
+    const loginBtn = document.getElementById('loginBtn');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+    
+    // Show flashed messages
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                popupText.textContent = "{{ message }}";
+                popup.classList.add('show');
+                
+                // Change popup color based on category
+                {% if category == 'error' %}
+                    popup.style.backgroundColor = '#ef4444';
+                {% elif category == 'success' %}
+                    popup.style.backgroundColor = '#10b981';
+                {% else %}
+                    popup.style.backgroundColor = '#f97316';
+                {% endif %}
+                
+                setTimeout(() => {
+                    popup.classList.remove('show');
+                    popup.style.backgroundColor = '#f97316'; // Reset color
+                }, 4000);
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    // Email validation
+    function validateEmail(email) {
+        const re = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/;
+        return re.test(email);
+    }
+    
+    // Password validation
+    function validatePassword(password) {
+        return password.length >= 6;
+    }
+    
+    // Real-time email validation
+    emailInput.addEventListener('input', function() {
+        if (this.value && !validateEmail(this.value)) {
+            emailError.textContent = 'Please enter a valid email address';
+            this.classList.add('error');
+        } else {
+            emailError.textContent = '';
+            this.classList.remove('error');
+        }
+    });
+    
+    // Real-time password validation
+    passwordInput.addEventListener('input', function() {
+        if (this.value && !validatePassword(this.value)) {
+            passwordError.textContent = 'Password must be at least 6 characters';
+            this.classList.add('error');
+        } else {
+            passwordError.textContent = '';
+            this.classList.remove('error');
+        }
+    });
+    
+    // Form submission with loading state
+    loginForm.addEventListener('submit', function(e) {
+        let isValid = true;
+        
+        // Validate email
+        if (!validateEmail(emailInput.value)) {
+            emailError.textContent = 'Please enter a valid email address';
+            emailInput.classList.add('error');
+            isValid = false;
+        }
+        
+        // Validate password
+        if (!validatePassword(passwordInput.value)) {
+            passwordError.textContent = 'Password must be at least 6 characters';
+            passwordInput.classList.add('error');
+            isValid = false;
+        }
+        
+        if (!isValid) {
+            e.preventDefault();
+            showPopup('Please fix the errors above', 'error');
+        } else {
+            // Show loading state
+            loginBtn.classList.add('loading');
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 8px;"></i>Logging in...';
+            loginBtn.disabled = true;
+            
+            // The form will submit normally
+            // If there's an error, the loading state will be removed when the page reloads
+        }
+    });
+    
+    // Function to show custom popup
+    function showPopup(message, type = 'error') {
+        popupText.textContent = message;
         popup.classList.add('show');
-
+        
+        if (type === 'error') {
+            popup.style.backgroundColor = '#ef4444';
+        } else if (type === 'success') {
+            popup.style.backgroundColor = '#10b981';
+        } else {
+            popup.style.backgroundColor = '#f97316';
+        }
+        
         setTimeout(() => {
             popup.classList.remove('show');
-        }, 4000); 
-    {% endif %}
-    {% endwith %}
+            popup.style.backgroundColor = '#f97316';
+        }, 4000);
+    }
+    
+    // Social login simulation
+    function socialLogin(provider) {
+        showPopup(`Connecting with ${provider}...`, 'info');
+        
+        // Simulate redirect to social auth
+        setTimeout(() => {
+            // In a real app, you would redirect to the OAuth URL
+            // window.location.href = "{{ url_for('auth.login') }}";
+            showPopup(`${provider} login feature coming soon!`, 'info');
+        }, 1500);
+    }
+    
+    // Check for saved email (remember me functionality)
+    if (localStorage.getItem('rememberedEmail')) {
+        emailInput.value = localStorage.getItem('rememberedEmail');
+        document.getElementById('remember').checked = true;
+    }
+    
+    // Save email if remember me is checked
+    document.getElementById('remember').addEventListener('change', function(e) {
+        if (e.target.checked) {
+            localStorage.setItem('rememberedEmail', emailInput.value);
+        } else {
+            localStorage.removeItem('rememberedEmail');
+        }
+    });
+    
+    // Update saved email when user types
+    emailInput.addEventListener('change', function() {
+        if (document.getElementById('remember').checked) {
+            localStorage.setItem('rememberedEmail', this.value);
+        }
+    });
+    
+    // Add demo credentials for testing (remove in production)
+    function addDemoCredentials() {
+        const demoBtn = document.createElement('button');
+        demoBtn.innerHTML = '<i class="fas fa-user-friends"></i> Use Demo Account';
+        demoBtn.style.cssText = `
+            width: 100%;
+            background: #10b981;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        `;
+        demoBtn.onmouseover = () => demoBtn.style.transform = 'translateY(-2px)';
+        demoBtn.onmouseout = () => demoBtn.style.transform = 'translateY(0)';
+        demoBtn.onclick = () => {
+            emailInput.value = 'demo@biteongo.com';
+            passwordInput.value = 'demo123';
+            showPopup('Demo credentials loaded! Click login to continue.', 'success');
+        };
+        
+        const helper = document.querySelector('.helper');
+        helper.parentNode.insertBefore(demoBtn, helper.nextSibling);
+    }
+    
+    // Uncomment to add demo credentials button
+    // addDemoCredentials();
 </script>
 
-  </div>
 {% endblock %}

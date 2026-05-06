@@ -2,9 +2,15 @@ from flask import Blueprint,render_template,redirect
 from flask_login import login_required
 home_auth = Blueprint("home_auth",__name__)
 
-@home_auth.route("/home")
-@login_required
+
+# ---------------------HOME----------------------
+@home_auth.route("/")
 def home():
+    return render_template("home.html")
+
+@home_auth.route("/menu")
+@login_required
+def menu():
     foods = [
         {
             "name": "Pizza",
