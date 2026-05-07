@@ -6603,3 +6603,68 @@ jinja2.exceptions.TemplateAssertionError: block 'content' defined twice
 2026-05-06 18:30:59,818 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
 2026-05-06 18:31:07,298 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:31:07] "GET /contact HTTP/1.1" 200 -
 2026-05-06 18:31:09,095 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:31:09] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-06 18:32:12,710 - INFO - app - Flask application starting...
+2026-05-06 18:32:12,772 - INFO - app - Database initialized
+2026-05-06 18:32:12,775 - INFO - app - LoginManager initialized
+2026-05-06 18:32:12,776 - INFO - app - Mail service configured
+2026-05-06 18:32:12,779 - INFO - app - Auth blueprint registered
+2026-05-06 18:32:12,787 - INFO - app - Home blueprint registered
+2026-05-06 18:32:12,793 - INFO - app - About blueprint registered
+2026-05-06 18:32:12,799 - INFO - app - Contact blueprint registered
+2026-05-06 18:32:12,862 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-06 18:32:12,864 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-05-06 18:32:20,994 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:32:20] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2026-05-06 18:32:21,216 - INFO - werkzeug - 127.0.0.1 - - [06/May/2026 18:32:21] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-06 18:43:17,452 - INFO - app - Flask application starting...
+2026-05-06 18:43:17,560 - INFO - app - Database initialized
+2026-05-06 18:43:17,560 - INFO - app - LoginManager initialized
+2026-05-06 18:43:17,560 - INFO - app - Mail service configured
+2026-05-06 18:43:17,560 - INFO - app - Auth blueprint registered
+2026-05-06 18:43:17,560 - INFO - app - Home blueprint registered
+2026-05-06 18:43:17,569 - INFO - app - About blueprint registered
+2026-05-06 18:43:17,582 - INFO - app - Contact blueprint registered
+2026-05-06 18:45:08,060 - INFO - app - Flask application starting...
+2026-05-06 18:45:08,163 - INFO - app - Database initialized
+2026-05-06 18:45:08,163 - INFO - app - LoginManager initialized
+2026-05-06 18:45:08,163 - INFO - app - Mail service configured
+2026-05-06 18:45:08,163 - INFO - app - Auth blueprint registered
+2026-05-06 18:45:08,163 - INFO - app - Home blueprint registered
+2026-05-06 18:45:08,171 - INFO - app - About blueprint registered
+2026-05-06 18:45:08,173 - INFO - app - Contact blueprint registered
+2026-05-07 05:29:11,202 - INFO - app - Flask application starting...
+2026-05-07 05:29:11,291 - INFO - app - Database initialized
+2026-05-07 05:29:11,291 - INFO - app - LoginManager initialized
+2026-05-07 05:29:11,295 - INFO - app - Mail service configured
+2026-05-07 05:29:11,299 - INFO - app - Auth blueprint registered
+2026-05-07 05:29:11,304 - INFO - app - Home blueprint registered
+2026-05-07 05:29:11,306 - INFO - app - About blueprint registered
+2026-05-07 05:29:11,311 - INFO - app - Contact blueprint registered
+2026-05-07 05:29:11,543 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-07 05:29:11,543 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-05-07 05:29:20,148 - INFO - werkzeug - 127.0.0.1 - - [07/May/2026 05:29:20] "GET / HTTP/1.1" 200 -
+2026-05-07 05:29:23,477 - INFO - werkzeug - 127.0.0.1 - - [07/May/2026 05:29:23] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-07 05:29:27,417 - INFO - werkzeug - 127.0.0.1 - - [07/May/2026 05:29:27] "[36mGET /static/images/pizz.jpg HTTP/1.1[0m" 304 -
+2026-05-07 05:29:27,607 - INFO - werkzeug - 127.0.0.1 - - [07/May/2026 05:29:27] "[36mGET /static/images/shawarma.jpg HTTP/1.1[0m" 304 -
+2026-05-07 05:29:27,783 - INFO - werkzeug - 127.0.0.1 - - [07/May/2026 05:29:27] "[36mGET /static/images/pie.jpg HTTP/1.1[0m" 304 -
+2026-05-07 05:29:27,944 - INFO - werkzeug - 127.0.0.1 - - [07/May/2026 05:29:27] "[36mGET /static/images/burger.jpg HTTP/1.1[0m" 304 -
+2026-05-07 05:29:27,968 - INFO - werkzeug - 127.0.0.1 - - [07/May/2026 05:29:27] "[36mGET /static/images/Doughnuts.jpg HTTP/1.1[0m" 304 -
+2026-05-07 05:29:28,299 - INFO - werkzeug - 127.0.0.1 - - [07/May/2026 05:29:28] "[36mGET /static/images/eggroll.jpg HTTP/1.1[0m" 304 -
+2026-05-07 05:29:28,324 - INFO - werkzeug - 127.0.0.1 - - [07/May/2026 05:29:28] "[36mGET /static/images/croissants.jpg HTTP/1.1[0m" 304 -
+2026-05-07 05:29:28,515 - INFO - werkzeug - 127.0.0.1 - - [07/May/2026 05:29:28] "[36mGET /static/images/coldstone.jpg HTTP/1.1[0m" 304 -
+2026-05-07 05:29:28,543 - INFO - werkzeug - 127.0.0.1 - - [07/May/2026 05:29:28] "[36mGET /static/images/chicken.jpg HTTP/1.1[0m" 304 -
+2026-05-07 05:29:28,786 - INFO - werkzeug - 127.0.0.1 - - [07/May/2026 05:29:28] "[36mGET /static/images/parfait.jpg HTTP/1.1[0m" 304 -
+2026-05-07 05:29:30,562 - INFO - werkzeug - 127.0.0.1 - - [07/May/2026 05:29:30] "GET /register HTTP/1.1" 200 -
+2026-05-07 05:29:31,009 - INFO - werkzeug - 127.0.0.1 - - [07/May/2026 05:29:31] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-05-07 05:30:11,950 - INFO - app - Flask application starting...
+2026-05-07 05:30:12,072 - INFO - app - Database initialized
+2026-05-07 05:30:12,074 - INFO - app - LoginManager initialized
+2026-05-07 05:30:12,076 - INFO - app - Mail service configured
+2026-05-07 05:30:12,079 - INFO - app - Auth blueprint registered
+2026-05-07 05:30:12,079 - INFO - app - Home blueprint registered
+2026-05-07 05:30:12,087 - INFO - app - About blueprint registered
+2026-05-07 05:30:12,090 - INFO - app - Contact blueprint registered
+2026-05-07 05:30:12,164 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-07 05:30:12,164 - INFO - werkzeug - [33mPress CTRL+C to quit[0m

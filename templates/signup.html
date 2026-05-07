@@ -390,21 +390,6 @@
                 Create Account
             </button>
         </form>
-        
-        <div class="social-signup">
-            <p>Or sign up with</p>
-            <div class="social-buttons">
-                <button class="social-btn google" onclick="socialSignup('google')">
-                    <i class="fab fa-google"></i>
-                    Google
-                </button>
-                <button class="social-btn facebook" onclick="socialSignup('facebook')">
-                    <i class="fab fa-facebook-f"></i>
-                    Facebook
-                </button>
-            </div>
-        </div>
-        
         <div class="helper">
             <p>Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a></p>
         </div>
@@ -669,17 +654,6 @@
             popup.classList.remove('show');
             popup.style.backgroundColor = '#f97316';
         }, 4000);
-    }
-    
-    // Social signup
-    function socialSignup(provider) {
-        showPopup(`Signing up with ${provider}...`, 'info');
-        
-        setTimeout(() => {
-            // In a real app, you would redirect to the OAuth URL
-            // window.location.href = "{{ url_for('auth.register') }}";
-            showPopup(`${provider} signup feature coming soon!`, 'info');
-        }, 1500);
     }
     
     // Add demo account for testing (remove in production)
